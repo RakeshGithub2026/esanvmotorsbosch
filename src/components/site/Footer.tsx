@@ -1,20 +1,22 @@
 import { Link } from "@tanstack/react-router";
 import { Phone, Mail, MapPin, Clock, Instagram } from "lucide-react";
-import { CONTACT } from "@/lib/site-data";
+import { CONTACT, LOGOS } from "@/lib/site-data";
 
 export function Footer() {
   return (
     <footer className="border-t border-border bg-card/40">
       <div className="container-page grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
-          <div className="flex items-center gap-2.5">
-            <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary font-display text-lg font-bold text-primary-foreground">
-              E
-            </span>
-            <span className="font-display text-lg font-bold tracking-wide">ESANV MOTORS</span>
+          <div className="flex items-center gap-3">
+            <img src={LOGOS.esanv} alt="ESANV Motors logo" width={64} height={64}
+              className="h-16 w-16 rounded-xl border border-border bg-black object-contain p-1" />
+            <img src={LOGOS.bosch} alt="Bosch Car Service logo" width={64} height={64}
+              className="h-16 w-16 rounded-xl border border-border bg-white object-contain p-1" />
+            <span className="font-display text-xl font-bold tracking-wide">ESANV MOTORS</span>
           </div>
           <p className="mt-4 max-w-md text-sm text-muted-foreground">
-            Your trusted multi-brand car service center in Harur, Dharmapuri — proud
+            Your trusted multi-brand car service center on Gopinathampatti Koot Road,
+            near Harur, Dharmapuri District — proud
             partner with Bosch Car Service. Complete car care, coatings, diagnostics
             and genuine accessories under one roof.
           </p>
@@ -57,7 +59,7 @@ export function Footer() {
       <div className="border-t border-border">
         <div className="container-page flex flex-col items-center justify-between gap-2 py-5 text-xs text-muted-foreground sm:flex-row">
           <p>© {new Date().getFullYear()} ESANV Motors. All rights reserved.</p>
-          <p>Partner with BOSCH CAR SERVICE · Harur, Dharmapuri</p>
+          <p>Partner with BOSCH CAR SERVICE · Gopinathampatti Koot Rd, Harur, Dharmapuri</p>
         </div>
       </div>
     </footer>
