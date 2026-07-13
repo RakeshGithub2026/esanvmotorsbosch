@@ -143,5 +143,29 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-body);
   }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+}
+
+@utility container-page {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 80rem;
+  padding-inline: 1.25rem;
+}
+
+@utility text-gradient-red {
+  background: linear-gradient(100deg, oklch(0.7 0.2 26), oklch(0.55 0.24 26));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility glow-red {
+  box-shadow: 0 0 0 1px oklch(0.585 0.234 26 / 0.4), 0 20px 60px -20px oklch(0.585 0.234 26 / 0.55);
 }
