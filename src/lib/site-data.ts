@@ -1,12 +1,32 @@
 import heroCar from "@/assets/hero-car.jpg";
+import svcGeneral from "@/assets/svc-general.jpg";
 import svcMechanical from "@/assets/svc-mechanical.jpg";
 import svcDiagnostic from "@/assets/svc-diagnostic.jpg";
+import svcElectronics from "@/assets/svc-electronics.jpg";
 import svcPaint from "@/assets/svc-paint.jpg";
+import svcTinkering from "@/assets/svc-tinkering.jpg";
 import svcAlignment from "@/assets/svc-alignment.jpg";
+import svcTyre from "@/assets/svc-tyre.jpg";
 import svcWash from "@/assets/svc-wash.jpg";
+import svcAc from "@/assets/svc-ac.jpg";
 import galleryInterior from "@/assets/gallery-interior.jpg";
 import galleryWheels from "@/assets/gallery-wheels.jpg";
 import galleryCoating from "@/assets/gallery-coating.jpg";
+import coatingCeramic from "@/assets/coating-ceramic.jpg";
+import coatingGraphene from "@/assets/coating-graphene.jpg";
+import coatingPpf from "@/assets/coating-ppf.jpg";
+import accSeatcovers from "@/assets/acc-seatcovers.jpg";
+import accSunfilm from "@/assets/acc-sunfilm.jpg";
+import accMats from "@/assets/acc-mats.jpg";
+import accSteering from "@/assets/acc-steering.jpg";
+import accPerfume from "@/assets/acc-perfume.jpg";
+import accInfotainment from "@/assets/acc-infotainment.jpg";
+import accSpeakers from "@/assets/acc-speakers.jpg";
+import accLed from "@/assets/acc-led.jpg";
+import accBodycover from "@/assets/acc-bodycover.jpg";
+import accCleaning from "@/assets/acc-cleaning.jpg";
+import esanvLogo from "@/assets/esanv-logo.jpeg.asset.json";
+import boschLogo from "@/assets/bosch-logo.jpeg.asset.json";
 
 export const CONTACT = {
   name: "ESANV Motors",
@@ -14,11 +34,16 @@ export const CONTACT = {
   phoneHref: "tel:+919965811776",
   whatsapp: "919965811776",
   email: "esanvmotor@gmail.com",
-  address: "Harur, Dharmapuri – 636903",
+  address: "Gopinathampatti Koot Road, near Harur, Dharmapuri District – 636905",
   hours: "Mon – Sun · 9:00 AM – 8:00 PM",
   store: "https://vyaparapp.in/store/esanvmotors1",
-  maps: "https://www.google.com/maps/search/?api=1&query=Esanv%20Motors%2C%20Harur%2C%20Dharmapuri%20636903",
+  maps: "https://www.google.com/maps/search/?api=1&query=Esanv%20Motors%2C%20Gopinathampatti%20Koot%20Road%2C%20Harur%2C%20Dharmapuri%20636905",
   instagram: "https://instagram.com",
+};
+
+export const LOGOS = {
+  esanv: esanvLogo.url,
+  bosch: boschLogo.url,
 };
 
 export const IMAGES = {
@@ -55,15 +80,16 @@ export const WHY_US = [
 ];
 
 export const SERVICES = [
-  { name: "All Car Service", desc: "Periodic maintenance and complete multi-brand car servicing.", img: svcMechanical },
+  { name: "All Car Service", desc: "Periodic maintenance and complete multi-brand car servicing.", img: svcGeneral },
   { name: "Mechanical & Electrical", desc: "Engine, transmission and full electrical repair works.", img: svcMechanical },
   { name: "Diagnostic & Scanning", desc: "Advanced computerised diagnostics for every brand.", img: svcDiagnostic },
-  { name: "Scanning & Electronics", desc: "ECU, sensor and electronic module repair & coding.", img: svcDiagnostic },
+  { name: "Scanning & Electronics", desc: "ECU, sensor and electronic module repair & coding.", img: svcElectronics },
   { name: "Painting", desc: "Full body & panel painting with premium finish.", img: svcPaint },
-  { name: "Tinkering", desc: "Precision denting, tinkering and body straightening.", img: svcPaint },
+  { name: "Tinkering", desc: "Precision denting, tinkering and body straightening.", img: svcTinkering },
   { name: "Wheel Alignment", desc: "Computerised 3D alignment for perfect handling.", img: svcAlignment },
-  { name: "Alignment & Tyre Changing", desc: "Alignment, balancing and tyre replacement.", img: svcAlignment },
+  { name: "Alignment & Tyre Changing", desc: "Alignment, balancing and tyre replacement.", img: svcTyre },
   { name: "Washing & Interior Cleaning", desc: "Exterior wash and deep interior detailing.", img: svcWash },
+  { name: "AC Service & Gas Topup", desc: "Cooling checks, gas refill and complete AC repair.", img: svcAc },
 ];
 
 export const EXTRA_SERVICES = [
@@ -76,22 +102,51 @@ export const EXTRA_SERVICES = [
 ];
 
 export const ACCESSORIES = [
-  "Seat Covers", "Sunfilms", "Floor Mats", "Steering Covers", "Car Perfumes",
-  "Infotainment", "Speakers", "LED Lights", "Body Covers", "Cleaning Kits",
+  { name: "Seat Covers", desc: "Premium leather & fabric seat covers.", img: accSeatcovers },
+  { name: "Sun Films", desc: "Heat-cut window tint & sun protection.", img: accSunfilm },
+  { name: "Floor Mats", desc: "Custom-fit 3D & 7D floor mats.", img: accMats },
+  { name: "Steering Covers", desc: "Comfort-grip leather steering covers.", img: accSteering },
+  { name: "Car Perfumes", desc: "Long-lasting fragrances & diffusers.", img: accPerfume },
+  { name: "Infotainment", desc: "Android touchscreen head units.", img: accInfotainment },
+  { name: "Speakers", desc: "Component speakers, subwoofers & amps.", img: accSpeakers },
+  { name: "LED Lights", desc: "Headlight bulbs & interior LED kits.", img: accLed },
+  { name: "Body Covers", desc: "Waterproof full car body covers.", img: accBodycover },
+  { name: "Cleaning Kits", desc: "Microfiber, brushes & polish kits.", img: accCleaning },
+];
+
+export const COATINGS = [
+  { name: "Ceramic Coating", desc: "9H hardness gloss & hydrophobic shine.", img: coatingCeramic },
+  { name: "Graphene Coating", desc: "Superior heat resistance & deep gloss.", img: coatingGraphene },
+  { name: "Paint Protection Film", desc: "Self-healing PPF against chips & scratches.", img: coatingPpf },
 ];
 
 export const SHOWROOM = [
-  { name: "Seat Covers & Interiors", tag: "Interior", img: galleryInterior },
+  { name: "Seat Covers & Interiors", tag: "Interior", img: accSeatcovers },
   { name: "Alloy Wheels", tag: "Wheels", img: galleryWheels },
-  { name: "Sunfilm & Styling", tag: "Exterior", img: galleryCoating },
+  { name: "Sunfilm & Styling", tag: "Exterior", img: accSunfilm },
   { name: "Modification & Facelift", tag: "Body Kits", img: svcPaint },
 ];
 
 export const BRANDS = [
-  "Hyundai", "Honda", "Tata", "Maruti Suzuki", "Mahindra", "Toyota",
-  "Kia", "Renault", "Nissan", "Volkswagen", "Skoda", "Ford",
-  "BMW", "Mercedes-Benz", "Audi", "MG", "Jeep", "Volvo",
-];
+  { name: "Hyundai", domain: "hyundai.com" },
+  { name: "Honda", domain: "honda.com" },
+  { name: "Tata", domain: "tatamotors.com" },
+  { name: "Maruti Suzuki", domain: "marutisuzuki.com" },
+  { name: "Mahindra", domain: "mahindra.com" },
+  { name: "Toyota", domain: "toyota.com" },
+  { name: "Kia", domain: "kia.com" },
+  { name: "Renault", domain: "renault.com" },
+  { name: "Nissan", domain: "nissan.com" },
+  { name: "Volkswagen", domain: "vw.com" },
+  { name: "Skoda", domain: "skoda-auto.com" },
+  { name: "Ford", domain: "ford.com" },
+  { name: "BMW", domain: "bmw.com" },
+  { name: "Mercedes-Benz", domain: "mercedes-benz.com" },
+  { name: "Audi", domain: "audi.com" },
+  { name: "MG", domain: "mgmotor.co.in" },
+  { name: "Jeep", domain: "jeep.com" },
+  { name: "Volvo", domain: "volvocars.com" },
+].map((b) => ({ ...b, logo: `https://logo.clearbit.com/${b.domain}` }));
 
 export const GALLERY = [
   { title: "Workshop Photos", img: svcMechanical },
