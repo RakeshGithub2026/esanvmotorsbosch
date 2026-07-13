@@ -27,6 +27,24 @@ import accBodycover from "@/assets/acc-bodycover.jpg";
 import accCleaning from "@/assets/acc-cleaning.jpg";
 import esanvLogo from "@/assets/esanv-logo.jpeg.asset.json";
 import boschLogo from "@/assets/bosch-logo.jpeg.asset.json";
+import brHyundai from "@/assets/brands/hyundai.svg.asset.json";
+import brHonda from "@/assets/brands/honda.svg.asset.json";
+import brTata from "@/assets/brands/tata.svg.asset.json";
+import brSuzuki from "@/assets/brands/suzuki.svg.asset.json";
+import brMahindra from "@/assets/brands/mahindra.svg.asset.json";
+import brToyota from "@/assets/brands/toyota.svg.asset.json";
+import brKia from "@/assets/brands/kia.svg.asset.json";
+import brRenault from "@/assets/brands/renault.svg.asset.json";
+import brNissan from "@/assets/brands/nissan.svg.asset.json";
+import brVolkswagen from "@/assets/brands/volkswagen.svg.asset.json";
+import brSkoda from "@/assets/brands/skoda.svg.asset.json";
+import brFord from "@/assets/brands/ford.svg.asset.json";
+import brBmw from "@/assets/brands/bmw.svg.asset.json";
+import brMercedes from "@/assets/brands/mercedes.svg.asset.json";
+import brAudi from "@/assets/brands/audi.svg.asset.json";
+import brMg from "@/assets/brands/mg.svg.asset.json";
+import brJeep from "@/assets/brands/jeep.svg.asset.json";
+import brVolvo from "@/assets/brands/volvo.svg.asset.json";
 
 export const CONTACT = {
   name: "ESANV Motors",
@@ -128,25 +146,25 @@ export const SHOWROOM = [
 ];
 
 export const BRANDS = [
-  { name: "Hyundai", domain: "hyundai.com" },
-  { name: "Honda", domain: "honda.com" },
-  { name: "Tata", domain: "tatamotors.com" },
-  { name: "Maruti Suzuki", domain: "marutisuzuki.com" },
-  { name: "Mahindra", domain: "mahindra.com" },
-  { name: "Toyota", domain: "toyota.com" },
-  { name: "Kia", domain: "kia.com" },
-  { name: "Renault", domain: "renault.com" },
-  { name: "Nissan", domain: "nissan.com" },
-  { name: "Volkswagen", domain: "vw.com" },
-  { name: "Skoda", domain: "skoda-auto.com" },
-  { name: "Ford", domain: "ford.com" },
-  { name: "BMW", domain: "bmw.com" },
-  { name: "Mercedes-Benz", domain: "mercedes-benz.com" },
-  { name: "Audi", domain: "audi.com" },
-  { name: "MG", domain: "mgmotor.co.in" },
-  { name: "Jeep", domain: "jeep.com" },
-  { name: "Volvo", domain: "volvocars.com" },
-].map((b) => ({ ...b, logo: `https://logo.clearbit.com/${b.domain}` }));
+  { name: "Hyundai", logo: brHyundai.url },
+  { name: "Honda", logo: brHonda.url },
+  { name: "Tata", logo: brTata.url },
+  { name: "Maruti Suzuki", logo: brSuzuki.url },
+  { name: "Mahindra", logo: brMahindra.url },
+  { name: "Toyota", logo: brToyota.url },
+  { name: "Kia", logo: brKia.url },
+  { name: "Renault", logo: brRenault.url },
+  { name: "Nissan", logo: brNissan.url },
+  { name: "Volkswagen", logo: brVolkswagen.url },
+  { name: "Skoda", logo: brSkoda.url },
+  { name: "Ford", logo: brFord.url },
+  { name: "BMW", logo: brBmw.url },
+  { name: "Mercedes-Benz", logo: brMercedes.url },
+  { name: "Audi", logo: brAudi.url },
+  { name: "MG", logo: brMg.url },
+  { name: "Jeep", logo: brJeep.url },
+  { name: "Volvo", logo: brVolvo.url },
+];
 
 export const GALLERY = [
   { title: "Workshop Photos", img: svcMechanical },
