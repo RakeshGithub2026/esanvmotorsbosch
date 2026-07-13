@@ -7,7 +7,7 @@ import { SiteLayout, SectionHeading } from "@/components/site/Layout";
 import { ReviewForm } from "@/components/site/ReviewForm";
 import {
   CONTACT, IMAGES, WHY_US, SERVICES, ACCESSORIES, SHOWROOM, BRANDS,
-  GALLERY, REVIEWS,
+  GALLERY, REVIEWS, COATINGS, LOGOS,
 } from "@/lib/site-data";
 
 export const Route = createFileRoute("/")({
@@ -21,7 +21,7 @@ function Index() {
     <SiteLayout>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_80%_20%,oklch(0.585_0.234_26/0.18),transparent)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_80%_20%,oklch(0.83_0.25_140/0.16),transparent)]" />
         <div className="container-page relative grid gap-10 py-14 lg:grid-cols-2 lg:items-center lg:py-20">
           <div>
             <div className="flex flex-wrap gap-2 text-xs font-semibold">
@@ -32,8 +32,14 @@ function Index() {
                 <span className="h-2 w-2 animate-pulse rounded-full bg-green-500" /> Open Now
               </span>
               <span className="rounded-full border border-border bg-secondary px-3 py-1">
-                Harur, Dharmapuri
+                Gopinathampatti Koot Rd, Harur
               </span>
+            </div>
+            <div className="mt-6 flex items-center gap-4">
+              <img src={LOGOS.esanv} alt="ESANV Motors logo" width={96} height={96}
+                className="h-20 w-20 rounded-2xl border border-border bg-black object-contain p-1 sm:h-24 sm:w-24" />
+              <img src={LOGOS.bosch} alt="Bosch Car Service logo" width={96} height={96}
+                className="h-20 w-20 rounded-2xl border border-border bg-white object-contain p-1 sm:h-24 sm:w-24" />
             </div>
             <h1 className="mt-6 font-display text-6xl font-bold leading-[0.95] sm:text-7xl">
               ESANV <span className="text-gradient-red">MOTORS</span>
@@ -42,7 +48,8 @@ function Index() {
               Partner with <span className="text-primary">BOSCH CAR SERVICE</span>
             </p>
             <p className="mt-4 max-w-xl text-muted-foreground">
-              Your trusted multi-brand car service center in Harur, Dharmapuri. Expert
+              Your trusted multi-brand car service center on Gopinathampatti Koot Road,
+              near Harur, Dharmapuri District. Expert
               car service, diagnostics, bodyshop works, wheel alignment, water wash,
               accessories, seat covers, sunfilms and complete car care for all major brands.
             </p>
@@ -111,7 +118,7 @@ function Index() {
         <SectionHeading
           eyebrow="About ESANV Motors"
           title="Complete Car Care Under One Roof"
-          desc="ESANV Motors is a professional multi-brand car service center and accessories destination in Harur, Dharmapuri – 636903. As a trusted Bosch Car Service partner, we deliver high-quality vehicle care with advanced tools, trained technicians and genuine products."
+          desc="ESANV Motors is a professional multi-brand car service center and accessories destination on Gopinathampatti Koot Road, near Harur, Dharmapuri District – 636905. As a trusted Bosch Car Service partner, we deliver high-quality vehicle care with advanced tools, trained technicians and genuine products."
         />
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
@@ -204,11 +211,42 @@ function Index() {
           </div>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
             {ACCESSORIES.map((a) => (
-              <div key={a} className="rounded-xl border border-border bg-card px-4 py-4 text-center text-sm font-medium">
-                {a}
-              </div>
+              <article key={a.name} className="group overflow-hidden rounded-xl border border-border bg-card">
+                <div className="aspect-square overflow-hidden">
+                  <img src={a.img} alt={a.name} loading="lazy" width={400} height={400}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                </div>
+                <div className="p-3 text-center">
+                  <h3 className="text-sm font-semibold">{a.name}</h3>
+                  <p className="mt-0.5 text-xs text-muted-foreground">{a.desc}</p>
+                </div>
+              </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Coatings */}
+      <section className="container-page py-20">
+        <SectionHeading
+          eyebrow="Premium Coatings"
+          title="Ceramic, Graphene & PPF Protection"
+          desc="Long-lasting paint protection and gloss — each solution tailored to your car and budget."
+          center
+        />
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {COATINGS.map((c) => (
+            <article key={c.name} className="group overflow-hidden rounded-2xl border border-border bg-card">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img src={c.img} alt={c.name} loading="lazy" width={800} height={600}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              </div>
+              <div className="p-5">
+                <h3 className="font-display text-lg font-bold">{c.name}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{c.desc}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -246,9 +284,13 @@ function Index() {
           />
           <div className="mt-12 flex flex-wrap justify-center gap-3">
             {BRANDS.map((b) => (
-              <span key={b} className="rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground">
-                {b}
-              </span>
+              <div key={b.name} className="flex flex-col items-center gap-2 rounded-2xl border border-border bg-card p-4 transition-colors hover:border-primary/50">
+                <div className="grid h-16 w-16 place-items-center rounded-xl bg-white p-2">
+                  <img src={b.logo} alt={`${b.name} logo`} loading="lazy" width={56} height={56}
+                    className="max-h-12 max-w-12 object-contain" />
+                </div>
+                <span className="text-xs font-semibold text-muted-foreground">{b.name}</span>
+              </div>
             ))}
           </div>
         </div>
@@ -317,7 +359,7 @@ function Index() {
       {/* CTA */}
       <section className="container-page py-20">
         <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-10 text-center glow-red">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,oklch(0.585_0.234_26/0.2),transparent)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,oklch(0.83_0.25_140/0.18),transparent)]" />
           <div className="relative">
             <h2 className="font-display text-3xl font-bold sm:text-4xl">Ready to Book Your Service?</h2>
             <p className="mx-auto mt-3 max-w-xl text-muted-foreground">

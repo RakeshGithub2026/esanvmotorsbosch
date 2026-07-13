@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X, Phone, Instagram } from "lucide-react";
-import { CONTACT } from "@/lib/site-data";
+import { CONTACT, LOGOS } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
 
 const NAV = [
@@ -17,12 +17,13 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-xl">
       <div className="container-page flex h-16 items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
-          <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary font-display text-lg font-bold text-primary-foreground">
-            E
-          </span>
+        <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
+          <img src={LOGOS.esanv} alt="ESANV Motors logo" width={52} height={52}
+            className="h-12 w-12 rounded-lg border border-border bg-black object-contain p-0.5" />
+          <img src={LOGOS.bosch} alt="Bosch Car Service logo" width={52} height={52}
+            className="hidden h-12 w-12 rounded-lg border border-border bg-white object-contain p-0.5 sm:block" />
           <span className="flex flex-col leading-none">
-            <span className="font-display text-lg font-bold tracking-wide">ESANV MOTORS</span>
+            <span className="font-display text-xl font-bold tracking-wide">ESANV MOTORS</span>
             <span className="text-[10px] uppercase tracking-[0.18em] text-primary">
               Bosch Car Service
             </span>
