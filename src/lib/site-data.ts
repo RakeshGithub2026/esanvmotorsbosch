@@ -45,6 +45,14 @@ import brAudi from "@/assets/brands/audi.svg.asset.json";
 import brMg from "@/assets/brands/mg.svg.asset.json";
 import brJeep from "@/assets/brands/jeep.svg.asset.json";
 import brVolvo from "@/assets/brands/volvo.svg.asset.json";
+import galFounder from "@/assets/gallery/founder.png.asset.json";
+import galServiceBay from "@/assets/gallery/service-bay.png.asset.json";
+import galWorkshopHall from "@/assets/gallery/workshop-hall.png.asset.json";
+import galWorkshopTop from "@/assets/gallery/workshop-top.png.asset.json";
+import galServiceArea from "@/assets/gallery/service-area.png.asset.json";
+import galWaterWash from "@/assets/gallery/water-wash.png.asset.json";
+import galShowroomFront from "@/assets/gallery/showroom-front.png.asset.json";
+import galAccessoriesStore from "@/assets/gallery/accessories-store.png.asset.json";
 
 export const CONTACT = {
   name: "ESANV Motors",
@@ -167,15 +175,14 @@ export const BRANDS = [
 ];
 
 export const GALLERY = [
-  { title: "Workshop Photos", img: svcMechanical },
-  { title: "Service Area", img: svcAlignment },
-  { title: "Accessories Store", img: galleryInterior },
-  { title: "Customer Delivery", img: svcWash },
-  { title: "Team Photos", img: galleryWheels },
-  { title: "Before & After Service", img: svcPaint },
-  { title: "Coating & Detailing", img: galleryCoating },
-  { title: "Diagnostics Bay", img: svcDiagnostic },
-  { title: "Hero Delivery", img: heroCar },
+  { title: "Founder — ESANV Motors", img: galFounder.url },
+  { title: "Service Bay", img: galServiceBay.url },
+  { title: "Workshop Hall", img: galWorkshopHall.url },
+  { title: "Multi-Brand Workshop", img: galWorkshopTop.url },
+  { title: "Service Area", img: galServiceArea.url },
+  { title: "Water Wash Bay", img: galWaterWash.url },
+  { title: "Bosch Car Service Facade", img: galShowroomFront.url },
+  { title: "Accessories Store", img: galAccessoriesStore.url },
 ];
 
 export const REVIEWS = [
