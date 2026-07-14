@@ -16,7 +16,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-xl">
-      <div className="container-page flex h-16 items-center justify-between gap-4">
+      <div className="container-page flex h-20 items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <img src={LOGOS.esanv} alt="ESANV MOTORS logo" width={72} height={72}
             className="h-16 w-16 rounded-lg border border-border bg-black object-contain p-0.5" />
