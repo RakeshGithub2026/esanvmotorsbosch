@@ -20,14 +20,14 @@ export function Header() {
         <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <img src={LOGOS.esanv} alt="ESANV MOTORS logo" width={72} height={72}
             className="h-16 w-16 rounded-lg border border-border bg-black object-contain p-0.5" />
-          <img src={LOGOS.bosch} alt="Bosch Car Service logo" width={64} height={64}
-            className="hidden h-14 w-14 rounded-lg border border-border bg-white object-contain p-0.5 sm:block" />
           <span className="flex flex-col leading-none">
             <span className="font-display text-xl font-bold tracking-wide">ESANV MOTORS</span>
             <span className="text-[10px] uppercase tracking-[0.18em] text-primary">
               Bosch Car Service
             </span>
           </span>
+          <img src={LOGOS.bosch} alt="Bosch Car Service logo" width={64} height={64}
+            className="hidden h-14 w-14 rounded-lg object-contain sm:block" />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
