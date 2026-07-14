@@ -36,10 +36,10 @@ function Index() {
               </span>
             </div>
             <div className="mt-6 flex items-center gap-4">
-              <img src={LOGOS.esanv} alt="ESANV Motors logo" width={96} height={96}
-                className="h-20 w-20 rounded-2xl border border-border bg-black object-contain p-1 sm:h-24 sm:w-24" />
-              <img src={LOGOS.bosch} alt="Bosch Car Service logo" width={96} height={96}
-                className="h-20 w-20 rounded-2xl border border-border bg-white object-contain p-1 sm:h-24 sm:w-24" />
+              <img src={LOGOS.esanv} alt="ESANV MOTORS logo" width={160} height={160}
+                className="h-28 w-28 rounded-2xl border border-border bg-black object-contain p-1.5 sm:h-36 sm:w-36" />
+              <img src={LOGOS.bosch} alt="Bosch Car Service logo" width={140} height={140}
+                className="h-24 w-24 rounded-2xl border border-border bg-white object-contain p-1.5 sm:h-32 sm:w-32" />
             </div>
             <h1 className="mt-6 font-display text-6xl font-bold leading-[0.95] sm:text-7xl">
               ESANV <span className="text-gradient-red">MOTORS</span>
