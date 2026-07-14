@@ -5,6 +5,7 @@ import {
 } from "lucide-react";
 import { SiteLayout, SectionHeading } from "@/components/site/Layout";
 import { ReviewForm } from "@/components/site/ReviewForm";
+import heroBg3d from "@/assets/hero-bg-3d.jpg";
 import {
   CONTACT, IMAGES, WHY_US, SERVICES, ACCESSORIES, SHOWROOM, BRANDS,
   GALLERY, REVIEWS, COATINGS, LOGOS,
@@ -21,6 +22,12 @@ function Index() {
     <SiteLayout>
       {/* Hero */}
       <section className="relative overflow-hidden">
+        <div
+          className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-25"
+          style={{ backgroundImage: `url(${heroBg3d})` }}
+          aria-hidden="true"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/30" />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_80%_20%,oklch(0.83_0.25_140/0.16),transparent)]" />
         <div className="container-page relative grid gap-10 py-14 lg:grid-cols-2 lg:items-center lg:py-20">
           <div>
@@ -39,7 +46,7 @@ function Index() {
               <img src={LOGOS.esanv} alt="ESANV MOTORS logo" width={160} height={160}
                 className="h-28 w-28 rounded-2xl border border-border bg-black object-contain p-1.5 sm:h-36 sm:w-36" />
               <img src={LOGOS.bosch} alt="Bosch Car Service logo" width={140} height={140}
-                className="h-24 w-24 rounded-2xl border border-border bg-white object-contain p-1.5 sm:h-32 sm:w-32" />
+                className="h-24 w-24 rounded-2xl object-contain sm:h-32 sm:w-32" />
             </div>
             <h1 className="mt-6 font-display text-6xl font-bold leading-[0.95] sm:text-7xl">
               ESANV <span className="text-gradient-red">MOTORS</span>
