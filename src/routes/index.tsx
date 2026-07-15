@@ -109,11 +109,11 @@ function Index() {
           </div>
         </div>
 
-        <div className="border-y border-border bg-card/40">
-          <div className="container-page flex flex-wrap items-center justify-center gap-x-8 gap-y-2 py-4 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+        <div className="border-y border-primary/30 bg-card">
+          <div className="container-page flex flex-wrap items-center justify-center gap-x-8 gap-y-2 py-4 text-xs font-semibold uppercase tracking-widest text-foreground">
             {["Partner with Bosch", "50+ Services", "All Car Brands", "Genuine Accessories", "Bodyshop & Coatings"].map((t) => (
               <span key={t} className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary" /> {t}
+                <span className="h-2 w-2 rounded-full bg-primary shadow-[0_0_8px_var(--primary)]" /> {t}
               </span>
             ))}
           </div>
