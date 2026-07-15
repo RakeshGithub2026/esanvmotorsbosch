@@ -15,7 +15,10 @@ export const Route = createFileRoute("/contact")({
       },
       { property: "og:title", content: "Contact & Book — ESANV Motors" },
       { property: "og:description", content: "Book a car service in Harur, Dharmapuri. Confirmation on WhatsApp within minutes." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://esanvmotorsbosch.lovable.app/contact" },
     ],
+    links: [{ rel: "canonical", href: "https://esanvmotorsbosch.lovable.app/contact" }],
   }),
   component: Contact,
 });

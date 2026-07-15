@@ -13,7 +13,10 @@ export const Route = createFileRoute("/gallery")({
       },
       { property: "og:title", content: "Gallery — ESANV Motors" },
       { property: "og:description", content: "Inside the ESANV Motors workshop and accessories store." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://esanvmotorsbosch.lovable.app/gallery" },
     ],
+    links: [{ rel: "canonical", href: "https://esanvmotorsbosch.lovable.app/gallery" }],
   }),
   component: Gallery,
 });
