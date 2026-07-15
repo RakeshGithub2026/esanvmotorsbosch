@@ -5,7 +5,7 @@ import {
 } from "lucide-react";
 import { SiteLayout, SectionHeading } from "@/components/site/Layout";
 import { ReviewForm } from "@/components/site/ReviewForm";
-import heroBg3d from "@/assets/hero-bg-3d.jpg";
+import heroBg3d from "@/assets/hero-bg-3d.webp";
 import {
   CONTACT, IMAGES, WHY_US, SERVICES, ACCESSORIES, SHOWROOM, BRANDS,
   GALLERY, REVIEWS, COATINGS, LOGOS,
