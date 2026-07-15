@@ -14,7 +14,10 @@ export const Route = createFileRoute("/services")({
       },
       { property: "og:title", content: "Car Services — ESANV Motors" },
       { property: "og:description", content: "50+ professional multi-brand car services in Harur, Dharmapuri." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://esanvmotorsbosch.lovable.app/services" },
     ],
+    links: [{ rel: "canonical", href: "https://esanvmotorsbosch.lovable.app/services" }],
   }),
   component: Services,
 });

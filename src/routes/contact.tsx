@@ -15,7 +15,10 @@ export const Route = createFileRoute("/contact")({
       },
       { property: "og:title", content: "Contact & Book — ESANV Motors" },
       { property: "og:description", content: "Book a car service in Harur, Dharmapuri. Confirmation on WhatsApp within minutes." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://esanvmotorsbosch.lovable.app/contact" },
     ],
+    links: [{ rel: "canonical", href: "https://esanvmotorsbosch.lovable.app/contact" }],
   }),
   component: Contact,
 });
@@ -48,11 +51,23 @@ function Contact() {
             <li className="flex gap-3"><Mail className="mt-0.5 h-5 w-5 text-primary" /> <a href={`mailto:${CONTACT.email}`} className="hover:text-primary">{CONTACT.email}</a></li>
             <li className="flex gap-3"><Clock className="mt-0.5 h-5 w-5 text-primary" /> {CONTACT.hours}</li>
           </ul>
+          <div className="mt-6 overflow-hidden rounded-xl border border-border">
+            <iframe
+              title="ESANV Motors location on Google Maps"
+              src={`https://www.google.com/maps?q=${encodeURIComponent("Esanv Motors, Gopinathampatti Koot Road, Harur, Dharmapuri 636905")}&output=embed`}
+              width="100%"
+              height="320"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="block h-80 w-full border-0"
+              allowFullScreen
+            />
+          </div>
           <a href={CONTACT.maps} target="_blank" rel="noreferrer"
             className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 font-semibold text-primary-foreground hover:scale-[1.03]">
             <ExternalLink className="h-4 w-4" /> Open Google Maps
           </a>
-          <p className="mt-3 text-xs text-muted-foreground">Google Maps opens in a new tab.</p>
+          <p className="mt-3 text-xs text-muted-foreground">Tap the map to get directions in Google Maps.</p>
         </div>
       </section>
     </SiteLayout>
