@@ -106,6 +106,9 @@ function Index() {
                 alt="Premium luxury SUV at the ESANV Motors workshop"
                 width={1280}
                 height={960}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="h-full w-full object-cover"
               />
             </div>
