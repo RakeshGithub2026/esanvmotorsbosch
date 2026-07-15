@@ -8,10 +8,10 @@ export function Footer() {
       <div className="container-page grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-3">
-            <img src={LOGOS.esanv} alt="ESANV MOTORS logo" width={96} height={96}
+            <img decoding="async" src={LOGOS.esanv} alt="ESANV MOTORS logo" width={96} height={96}
               className="h-24 w-24 rounded-xl border border-border bg-black object-contain p-1.5" />
             <span className="font-display text-xl font-bold tracking-wide">ESANV MOTORS</span>
-            <img src={LOGOS.bosch} alt="Bosch Car Service logo" width={88} height={88}
+            <img decoding="async" src={LOGOS.bosch} alt="Bosch Car Service logo" width={88} height={88}
               className="h-20 w-20 rounded-xl object-contain" />
           </div>
           <p className="mt-4 max-w-md text-sm text-muted-foreground">

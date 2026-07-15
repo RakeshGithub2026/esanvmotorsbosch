@@ -37,7 +37,7 @@ function Gallery() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {GALLERY.map((g) => (
             <figure key={g.title} className="group relative overflow-hidden rounded-2xl border border-border">
-              <img src={g.img} alt={g.title} loading="lazy" width={800} height={600}
+              <img decoding="async" src={g.img} alt={g.title} loading="lazy" width={800} height={600}
                 className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105" />
               <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background to-transparent p-4 font-display font-bold">
                 {g.title}
