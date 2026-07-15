@@ -40,7 +40,7 @@ function Services() {
           {SERVICES.map((s) => (
             <article key={s.name} className="group overflow-hidden rounded-2xl border border-border bg-card">
               <div className="aspect-[4/3] overflow-hidden">
-                <img src={s.img} alt={s.name} loading="lazy" width={800} height={600}
+                <img decoding="async" src={s.img} alt={s.name} loading="lazy" width={800} height={600}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
               </div>
               <div className="p-5">

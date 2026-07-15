@@ -5,7 +5,7 @@ import {
 } from "lucide-react";
 import { SiteLayout, SectionHeading } from "@/components/site/Layout";
 import { ReviewForm } from "@/components/site/ReviewForm";
-import heroBg3d from "@/assets/hero-bg-3d.jpg";
+import heroBg3d from "@/assets/hero-bg-3d.webp";
 import {
   CONTACT, IMAGES, WHY_US, SERVICES, ACCESSORIES, SHOWROOM, BRANDS,
   GALLERY, REVIEWS, COATINGS, LOGOS,
@@ -58,9 +58,9 @@ function Index() {
               </span>
             </div>
             <div className="mt-6 flex items-center gap-4">
-              <img src={LOGOS.esanv} alt="ESANV MOTORS logo" width={160} height={160}
+              <img decoding="async" src={LOGOS.esanv} alt="ESANV MOTORS logo" width={160} height={160}
                 className="h-28 w-28 rounded-2xl border border-border bg-black object-contain p-1.5 sm:h-36 sm:w-36" />
-              <img src={LOGOS.bosch} alt="Bosch Car Service logo" width={140} height={140}
+              <img decoding="async" src={LOGOS.bosch} alt="Bosch Car Service logo" width={140} height={140}
                 className="h-24 w-24 rounded-2xl object-contain sm:h-32 sm:w-32" />
             </div>
             <h1 className="mt-6 font-display text-6xl font-bold leading-[0.95] sm:text-7xl">
@@ -106,6 +106,9 @@ function Index() {
                 alt="Premium luxury SUV at the ESANV Motors workshop"
                 width={1280}
                 height={960}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="h-full w-full object-cover"
               />
             </div>
@@ -196,7 +199,7 @@ function Index() {
           {SERVICES.map((s) => (
             <article key={s.name} className="group overflow-hidden rounded-2xl border border-border bg-card">
               <div className="aspect-[4/3] overflow-hidden">
-                <img src={s.img} alt={s.name} loading="lazy" width={800} height={600}
+                <img decoding="async" src={s.img} alt={s.name} loading="lazy" width={800} height={600}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
               </div>
               <div className="p-5">
@@ -235,7 +238,7 @@ function Index() {
             {ACCESSORIES.map((a) => (
               <article key={a.name} className="group overflow-hidden rounded-xl border border-border bg-card">
                 <div className="aspect-square overflow-hidden">
-                  <img src={a.img} alt={a.name} loading="lazy" width={400} height={400}
+                  <img decoding="async" src={a.img} alt={a.name} loading="lazy" width={400} height={400}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 </div>
                 <div className="p-3 text-center">
@@ -260,7 +263,7 @@ function Index() {
           {COATINGS.map((c) => (
             <article key={c.name} className="group overflow-hidden rounded-2xl border border-border bg-card">
               <div className="aspect-[4/3] overflow-hidden">
-                <img src={c.img} alt={c.name} loading="lazy" width={800} height={600}
+                <img decoding="async" src={c.img} alt={c.name} loading="lazy" width={800} height={600}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
               </div>
               <div className="p-5">
@@ -283,7 +286,7 @@ function Index() {
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {SHOWROOM.map((s) => (
             <article key={s.name} className="group relative overflow-hidden rounded-2xl border border-border">
-              <img src={s.img} alt={s.name} loading="lazy" width={800} height={600}
+              <img decoding="async" src={s.img} alt={s.name} loading="lazy" width={800} height={600}
                 className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-4">
@@ -308,7 +311,7 @@ function Index() {
             {BRANDS.map((b) => (
               <div key={b.name} className="flex flex-col items-center gap-2 rounded-2xl border border-border bg-card p-4 transition-colors hover:border-primary/50">
                 <div className="grid h-16 w-16 place-items-center rounded-xl bg-white p-2">
-                  <img src={b.logo} alt={`${b.name} logo`} loading="lazy" width={56} height={56}
+                  <img decoding="async" src={b.logo} alt={`${b.name} logo`} loading="lazy" width={56} height={56}
                     className="max-h-12 max-w-12 object-contain" />
                 </div>
                 <span className="text-xs font-semibold text-muted-foreground">{b.name}</span>
@@ -329,7 +332,7 @@ function Index() {
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {GALLERY.slice(0, 6).map((g) => (
             <figure key={g.title} className="group relative overflow-hidden rounded-2xl border border-border">
-              <img src={g.img} alt={g.title} loading="lazy" width={800} height={600}
+              <img decoding="async" src={g.img} alt={g.title} loading="lazy" width={800} height={600}
                 className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105" />
               <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background to-transparent p-4 font-display font-bold">
                 {g.title}
