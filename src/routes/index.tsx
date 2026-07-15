@@ -12,6 +12,21 @@ import {
 } from "@/lib/site-data";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "ESANV Motors — Bosch Car Service Partner in Harur, Dharmapuri" },
+      {
+        name: "description",
+        content:
+          "ESANV Motors, a Bosch Car Service partner in Harur, Dharmapuri, offers 50+ multi-brand car services including diagnostics, bodyshop, painting, ceramic coating, PPF and genuine accessories.",
+      },
+      { property: "og:title", content: "ESANV Motors — Bosch Car Service Partner in Harur, Dharmapuri" },
+      { property: "og:description", content: "50+ multi-brand car services, diagnostics, bodyshop, coatings and genuine accessories — trusted Bosch Car Service partner in Dharmapuri." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://esanvmotorsbosch.lovable.app/" },
+    ],
+    links: [{ rel: "canonical", href: "https://esanvmotorsbosch.lovable.app/" }],
+  }),
   component: Index,
 });
 
