@@ -6,6 +6,9 @@ import {
 import { SiteLayout, SectionHeading } from "@/components/site/Layout";
 import { ReviewForm } from "@/components/site/ReviewForm";
 import heroBg3d from "@/assets/hero-bg-3d.webp";
+import heroCar640 from "@/assets/hero-car-640.webp";
+import heroCar960 from "@/assets/hero-car-960.webp";
+import heroCar1280 from "@/assets/hero-car.webp";
 import {
   CONTACT, IMAGES, WHY_US, SERVICES, ACCESSORIES, SHOWROOM, BRANDS,
   GALLERY, REVIEWS, COATINGS, LOGOS,
@@ -103,6 +106,8 @@ function Index() {
             <div className="overflow-hidden rounded-3xl glow-red">
               <img
                 src={IMAGES.heroCar}
+                srcSet={`${heroCar640} 640w, ${heroCar960} 960w, ${heroCar1280} 1280w`}
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 alt="Premium luxury SUV at the ESANV Motors workshop"
                 width={1280}
                 height={960}
