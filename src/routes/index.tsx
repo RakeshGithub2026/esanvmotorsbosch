@@ -234,6 +234,9 @@ function Index() {
               <a href={CONTACT.store} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground hover:scale-[1.03]">
                 <ShoppingBag className="h-4 w-4" /> Shop Accessories
               </a>
+              <Link to="/seat-covers" className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-6 py-3 font-semibold text-primary hover:bg-primary/20">
+                View Seat Cover Catalogue <ArrowRight className="h-4 w-4" />
+              </Link>
               <a href={CONTACT.store} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-6 py-3 font-semibold hover:bg-secondary/70">
                 Visit Online Store
               </a>
@@ -241,16 +244,29 @@ function Index() {
           </div>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
             {ACCESSORIES.map((a) => (
-              <article key={a.name} className="group overflow-hidden rounded-xl border border-border bg-card">
-                <div className="aspect-square overflow-hidden">
-                  <img decoding="async" src={a.img} alt={a.name} loading="lazy" width={400} height={400}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                </div>
-                <div className="p-3 text-center">
-                  <h3 className="text-sm font-semibold">{a.name}</h3>
-                  <p className="mt-0.5 text-xs text-muted-foreground">{a.desc}</p>
-                </div>
-              </article>
+              a.name === "Seat Covers" ? (
+                <Link key={a.name} to="/seat-covers" className="group overflow-hidden rounded-xl border border-primary/40 bg-card ring-1 ring-primary/20">
+                  <div className="aspect-square overflow-hidden">
+                    <img decoding="async" src={a.img} alt={a.name} loading="lazy" width={400} height={400}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  </div>
+                  <div className="p-3 text-center">
+                    <h3 className="text-sm font-semibold">{a.name}</h3>
+                    <p className="mt-0.5 text-xs text-primary">View catalogue →</p>
+                  </div>
+                </Link>
+              ) : (
+                <article key={a.name} className="group overflow-hidden rounded-xl border border-border bg-card">
+                  <div className="aspect-square overflow-hidden">
+                    <img decoding="async" src={a.img} alt={a.name} loading="lazy" width={400} height={400}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  </div>
+                  <div className="p-3 text-center">
+                    <h3 className="text-sm font-semibold">{a.name}</h3>
+                    <p className="mt-0.5 text-xs text-muted-foreground">{a.desc}</p>
+                  </div>
+                </article>
+              )
             ))}
           </div>
         </div>
