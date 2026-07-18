@@ -2,8 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ShoppingBag, Phone } from "lucide-react";
 import { SiteLayout, SectionHeading } from "@/components/site/Layout";
 import { CONTACT } from "@/lib/site-data";
-import page0a from "@/assets/seat-covers/catalogue-page-0a.webp.asset.json";
-import page0b from "@/assets/seat-covers/catalogue-page-0b.webp.asset.json";
+import pageM01 from "@/assets/seat-covers/catalogue-page-m01-m08.png.asset.json";
+import pageM09 from "@/assets/seat-covers/catalogue-page-m09-m16.png.asset.json";
 import page1 from "@/assets/seat-covers/catalogue-page-1.webp.asset.json";
 import page2 from "@/assets/seat-covers/catalogue-page-2.webp.asset.json";
 import page3 from "@/assets/seat-covers/catalogue-page-3.webp.asset.json";
@@ -13,8 +13,8 @@ import page6 from "@/assets/seat-covers/catalogue-page-6.webp.asset.json";
 import page7 from "@/assets/seat-covers/catalogue-page-7.webp.asset.json";
 
 const PAGES = [
-  { img: page0a.url, models: "M-01 to M-08", label: "Models 01 – 08" },
-  { img: page0b.url, models: "M-09 to M-16", label: "Models 09 – 16" },
+  { img: pageM01.url, models: "M-01 to M-08", label: "Models 01 – 08" },
+  { img: pageM09.url, models: "M-09 to M-16", label: "Models 09 – 16" },
   { img: page1.url, models: "M-17 to M-24", label: "Models 17 – 24" },
   { img: page2.url, models: "M-25 to M-32", label: "Models 25 – 32" },
   { img: page3.url, models: "M-33 to M-40", label: "Models 33 – 40" },
