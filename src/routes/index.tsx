@@ -102,8 +102,8 @@ function Index() {
             </div>
           </div>
 
-          <div className="relative">
-            <div className="overflow-hidden rounded-3xl glow-red">
+          <div className="relative [perspective:1200px]">
+            <div className="overflow-hidden rounded-3xl glow-red transition-transform duration-700 will-change-transform [transform:rotateY(-8deg)_rotateX(4deg)] hover:[transform:rotateY(0deg)_rotateX(0deg)]">
               <img
                 src={IMAGES.heroCar}
                 srcSet={`${heroCar640} 640w, ${heroCar960} 960w, ${heroCar1280} 1280w`}
@@ -132,11 +132,12 @@ function Index() {
           </div>
         </div>
 
-        <div className="border-y border-primary/30 bg-card">
-          <div className="container-page flex flex-wrap items-center justify-center gap-x-8 gap-y-2 py-4 text-xs font-semibold uppercase tracking-widest text-foreground">
+        <div className="relative border-y border-primary/40 bg-gradient-to-r from-card via-background to-card">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_120%_at_50%_50%,oklch(0.83_0.25_140/0.10),transparent)]" />
+          <div className="container-page relative flex flex-wrap items-center justify-center gap-x-8 gap-y-2 py-4 text-sm font-bold uppercase tracking-widest text-foreground drop-shadow-[0_0_6px_oklch(0.83_0.25_140/0.35)]">
             {["Partner with Bosch", "50+ Services", "All Car Brands", "Genuine Accessories", "Bodyshop & Coatings"].map((t) => (
-              <span key={t} className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-primary shadow-[0_0_8px_var(--primary)]" /> {t}
+              <span key={t} className="flex items-center gap-2 text-foreground">
+                <span className="h-2.5 w-2.5 rounded-full bg-primary shadow-[0_0_10px_var(--primary)]" /> {t}
               </span>
             ))}
           </div>
