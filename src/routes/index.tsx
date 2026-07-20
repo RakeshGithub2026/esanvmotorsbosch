@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useRef, useState } from "react";
 import {
   ArrowRight, Phone, ShoppingBag, ShieldCheck, Wrench, Award, Sparkles,
   Users, ScanLine, Truck, FileCheck, Layers, Star, CheckCircle2,
@@ -36,6 +37,22 @@ export const Route = createFileRoute("/")({
 const WHY_ICONS = [Wrench, Award, Sparkles, ScanLine, ShieldCheck, Truck, FileCheck, Layers, Users];
 
 function Index() {
+  const tiltRef = useRef<HTMLDivElement>(null);
+  const [tilt, setTilt] = useState({ rx: 4, ry: -8, glareX: 70, glareY: 30, active: false });
+
+  const onTiltMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = tiltRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width;
+    const py = (e.clientY - r.top) / r.height;
+    const ry = (px - 0.5) * -18; // -9..9deg
+    const rx = (py - 0.5) * 12; // -6..6deg
+    setTilt({ rx, ry, glareX: px * 100, glareY: py * 100, active: true });
+  };
+  const onTiltLeave = () =>
+    setTilt({ rx: 4, ry: -8, glareX: 70, glareY: 30, active: false });
+
   return (
     <SiteLayout>
       {/* Hero */}
@@ -102,8 +119,20 @@ function Index() {
             </div>
           </div>
 
-          <div className="relative [perspective:1200px]">
-            <div className="overflow-hidden rounded-3xl glow-red transition-transform duration-700 will-change-transform [transform:rotateY(-8deg)_rotateX(4deg)] hover:[transform:rotateY(0deg)_rotateX(0deg)]">
+          <div
+            ref={tiltRef}
+            onMouseMove={onTiltMove}
+            onMouseLeave={onTiltLeave}
+            className="group/tilt relative [perspective:1400px]"
+          >
+            <div
+              className="relative overflow-hidden rounded-3xl glow-red will-change-transform"
+              style={{
+                transform: `rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
+                transition: tilt.active ? "transform 120ms ease-out" : "transform 500ms ease-out",
+                transformStyle: "preserve-3d",
+              }}
+            >
               <img
                 src={IMAGES.heroCar}
                 srcSet={`${heroCar640} 640w, ${heroCar960} 960w, ${heroCar1280} 1280w`}
@@ -116,16 +145,34 @@ function Index() {
                 decoding="async"
                 className="h-full w-full object-cover"
               />
+              {/* Glare */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 mix-blend-overlay transition-opacity duration-300"
+                style={{
+                  opacity: tilt.active ? 1 : 0,
+                  background: `radial-gradient(circle at ${tilt.glareX}% ${tilt.glareY}%, rgba(255,255,255,0.35), transparent 45%)`,
+                }}
+              />
             </div>
-            <div className="absolute left-4 top-4 rounded-2xl border border-border bg-background/80 px-4 py-3 backdrop-blur">
+            <div
+              className="absolute left-4 top-4 rounded-2xl border border-border bg-background/80 px-4 py-3 backdrop-blur"
+              style={{ transform: "translateZ(40px)" }}
+            >
               <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Diagnostic</p>
               <p className="font-display text-lg font-bold text-primary">ONLINE</p>
             </div>
-            <div className="absolute bottom-4 left-4 rounded-2xl border border-border bg-background/80 px-4 py-3 backdrop-blur">
+            <div
+              className="absolute bottom-4 left-4 rounded-2xl border border-border bg-background/80 px-4 py-3 backdrop-blur"
+              style={{ transform: "translateZ(40px)" }}
+            >
               <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Brands</p>
               <p className="font-display text-lg font-bold">All Covered</p>
             </div>
-            <div className="absolute bottom-4 right-4 rounded-2xl border border-border bg-background/80 px-4 py-3 backdrop-blur">
+            <div
+              className="absolute bottom-4 right-4 rounded-2xl border border-border bg-background/80 px-4 py-3 backdrop-blur"
+              style={{ transform: "translateZ(40px)" }}
+            >
               <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Services</p>
               <p className="font-display text-lg font-bold text-primary">50+</p>
             </div>
