@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ShoppingBag, Phone } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { ArrowRight, ShoppingBag, Phone, ZoomIn, ZoomOut, X, RotateCcw, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 import { SiteLayout, SectionHeading } from "@/components/site/Layout";
 import { CONTACT } from "@/lib/site-data";
 import pageM01 from "@/assets/seat-covers/catalogue-page-m01-m08.png.asset.json";
@@ -45,6 +46,20 @@ export const Route = createFileRoute("/seat-covers")({
 });
 
 function SeatCovers() {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const open = lightboxIndex !== null;
+
+  const openAt = useCallback((i: number) => setLightboxIndex(i), []);
+  const close = useCallback(() => setLightboxIndex(null), []);
+  const next = useCallback(
+    () => setLightboxIndex((i) => (i === null ? i : (i + 1) % PAGES.length)),
+    [],
+  );
+  const prev = useCallback(
+    () => setLightboxIndex((i) => (i === null ? i : (i - 1 + PAGES.length) % PAGES.length)),
+    [],
+  );
+
   return (
     <SiteLayout>
       <section className="border-b border-border bg-card/30 py-16">
@@ -75,12 +90,17 @@ function SeatCovers() {
 
       <section className="container-page py-16">
         <div className="grid gap-8 md:grid-cols-2">
-          {PAGES.map((p) => (
+          {PAGES.map((p, idx) => (
             <figure
               key={p.models}
               className="group overflow-hidden rounded-2xl border border-border bg-card"
             >
-              <div className="overflow-hidden bg-white">
+              <button
+                type="button"
+                onClick={() => openAt(idx)}
+                aria-label={`Zoom seat cover designs ${p.models}`}
+                className="relative block w-full overflow-hidden bg-white text-left"
+              >
                 <img
                   src={p.img}
                   alt={`ESANV Motors seat cover designs ${p.models}`}
@@ -90,7 +110,10 @@ function SeatCovers() {
                   height={1240}
                   className="h-auto w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
                 />
-              </div>
+                <span className="pointer-events-none absolute right-3 top-3 inline-flex items-center gap-1 rounded-full bg-black/70 px-3 py-1 text-xs font-semibold text-white opacity-0 backdrop-blur transition-opacity group-hover:opacity-100">
+                  <Maximize2 className="h-3.5 w-3.5" /> Click to zoom
+                </span>
+              </button>
               <figcaption className="flex items-center justify-between p-4">
                 <div>
                   <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
@@ -127,6 +150,178 @@ function SeatCovers() {
           </div>
         </div>
       </section>
+      {open && (
+        <Lightbox
+          page={PAGES[lightboxIndex!]}
+          onClose={close}
+          onNext={next}
+          onPrev={prev}
+        />
+      )}
     </SiteLayout>
+  );
+}
+
+function Lightbox({
+  page,
+  onClose,
+  onNext,
+  onPrev,
+}: {
+  page: { img: string; models: string; label: string };
+  onClose: () => void;
+  onNext: () => void;
+  onPrev: () => void;
+}) {
+  const [scale, setScale] = useState(1);
+  const [tx, setTx] = useState(0);
+  const [ty, setTy] = useState(0);
+  const dragRef = useRef<{ x: number; y: number; tx: number; ty: number } | null>(null);
+
+  const reset = useCallback(() => {
+    setScale(1);
+    setTx(0);
+    setTy(0);
+  }, []);
+
+  const clampScale = (s: number) => Math.min(5, Math.max(1, s));
+  const zoomIn = () => setScale((s) => clampScale(s + 0.5));
+  const zoomOut = () =>
+    setScale((s) => {
+      const n = clampScale(s - 0.5);
+      if (n === 1) {
+        setTx(0);
+        setTy(0);
+      }
+      return n;
+    });
+
+  useEffect(() => {
+    reset();
+  }, [page.img, reset]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      else if (e.key === "ArrowRight") onNext();
+      else if (e.key === "ArrowLeft") onPrev();
+      else if (e.key === "+" || e.key === "=") zoomIn();
+      else if (e.key === "-") zoomOut();
+      else if (e.key === "0") reset();
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [onClose, onNext, onPrev, reset]);
+
+  const onWheel = (e: React.WheelEvent) => {
+    e.preventDefault();
+    setScale((s) => clampScale(s + (e.deltaY < 0 ? 0.25 : -0.25)));
+  };
+
+  const onPointerDown = (e: React.PointerEvent) => {
+    if (scale <= 1) return;
+    (e.target as Element).setPointerCapture?.(e.pointerId);
+    dragRef.current = { x: e.clientX, y: e.clientY, tx, ty };
+  };
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (!dragRef.current) return;
+    setTx(dragRef.current.tx + (e.clientX - dragRef.current.x));
+    setTy(dragRef.current.ty + (e.clientY - dragRef.current.y));
+  };
+  const onPointerUp = () => {
+    dragRef.current = null;
+  };
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Seat cover designs ${page.models}`}
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur"
+      onClick={onClose}
+    >
+      {/* Top bar */}
+      <div
+        className="absolute inset-x-0 top-0 flex items-center justify-between gap-3 border-b border-white/10 bg-black/60 px-4 py-3 text-white"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div>
+          <p className="text-[10px] font-semibold uppercase tracking-widest text-white/60">Catalogue</p>
+          <p className="font-display text-base font-bold">{page.label}</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <button onClick={zoomOut} aria-label="Zoom out" className="rounded-full border border-white/20 bg-white/5 p-2 hover:bg-white/15">
+            <ZoomOut className="h-4 w-4" />
+          </button>
+          <span className="min-w-[3.5rem] text-center text-xs tabular-nums text-white/80">
+            {Math.round(scale * 100)}%
+          </span>
+          <button onClick={zoomIn} aria-label="Zoom in" className="rounded-full border border-white/20 bg-white/5 p-2 hover:bg-white/15">
+            <ZoomIn className="h-4 w-4" />
+          </button>
+          <button onClick={reset} aria-label="Reset zoom" className="rounded-full border border-white/20 bg-white/5 p-2 hover:bg-white/15">
+            <RotateCcw className="h-4 w-4" />
+          </button>
+          <button onClick={onClose} aria-label="Close" className="ml-2 rounded-full border border-white/20 bg-white/10 p-2 hover:bg-white/20">
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+
+      {/* Prev / Next */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          onPrev();
+        }}
+        aria-label="Previous"
+        className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full border border-white/20 bg-black/60 p-3 text-white hover:bg-black/80"
+      >
+        <ChevronLeft className="h-5 w-5" />
+      </button>
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          onNext();
+        }}
+        aria-label="Next"
+        className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full border border-white/20 bg-black/60 p-3 text-white hover:bg-black/80"
+      >
+        <ChevronRight className="h-5 w-5" />
+      </button>
+
+      {/* Image stage */}
+      <div
+        className="flex h-full w-full items-center justify-center overflow-hidden px-4 pb-14 pt-20"
+        onClick={(e) => e.stopPropagation()}
+        onWheel={onWheel}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
+        style={{ cursor: scale > 1 ? (dragRef.current ? "grabbing" : "grab") : "zoom-in" }}
+      >
+        <img
+          src={page.img}
+          alt={`ESANV Motors seat cover designs ${page.models}`}
+          draggable={false}
+          onDoubleClick={() => (scale === 1 ? setScale(2) : reset())}
+          className="max-h-full max-w-full select-none object-contain transition-transform duration-150 ease-out"
+          style={{ transform: `translate(${tx}px, ${ty}px) scale(${scale})` }}
+        />
+      </div>
+
+      {/* Hint */}
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-3 text-center text-[11px] uppercase tracking-widest text-white/60"
+      >
+        Scroll / pinch to zoom · Drag to pan · Double-click to toggle · Esc to close
+      </div>
+    </div>
   );
 }
