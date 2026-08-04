@@ -192,16 +192,26 @@ function HeroViewer() {
 
   return (
     <div
+      ref={shellRef}
+      className={
+        fullscreen
+          ? "fixed inset-0 z-[100] flex flex-col items-center justify-center gap-5 bg-background/95 p-4 backdrop-blur-sm sm:p-8"
+          : "relative"
+      }
+    >
+    <div
       ref={containerRef}
       role="group"
-      aria-label="3D showcase viewer — drag to rotate, scroll or pinch to zoom"
+      aria-label="3D showcase viewer — drag to rotate, scroll or pinch to zoom, fullscreen available"
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={endPointer}
       onPointerCancel={endPointer}
       onPointerLeave={() => setGlare((g) => ({ ...g, on: false }))}
       onDoubleClick={() => setView((v) => ({ ...v, scale: v.scale > 1 ? 1 : 1.75 }))}
-      className="group/tilt relative select-none [perspective:1400px] [touch-action:none]"
+      className={`group/tilt relative select-none [perspective:1400px] [touch-action:none] ${
+        fullscreen ? "w-[min(94vw,calc((100dvh-9rem)*(4/3)))]" : ""
+      }`}
       style={{ cursor: dragging ? "grabbing" : "grab" }}
     >
       <div
@@ -290,12 +300,33 @@ function HeroViewer() {
         >
           <RotateCcw className="h-4 w-4" />
         </button>
+        <button
+          type="button"
+          onClick={toggleFullscreen}
+          aria-label={fullscreen ? "Exit fullscreen (Esc)" : "Enter fullscreen"}
+          aria-pressed={fullscreen}
+          className="rounded-full p-2 text-foreground transition-colors hover:bg-primary/15 hover:text-primary"
+        >
+          {fullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+        </button>
       </div>
 
       {/* Hint */}
-      <div className="pointer-events-none absolute inset-x-0 -bottom-8 text-center text-[10px] uppercase tracking-widest text-muted-foreground">
-        Drag to rotate · Scroll / pinch to zoom · Double-click to zoom
-      </div>
+      {!fullscreen && (
+        <div className="pointer-events-none absolute inset-x-0 -bottom-8 text-center text-[10px] uppercase tracking-widest text-muted-foreground">
+          Drag to rotate · Scroll / pinch to zoom · ⛶ Fullscreen
+        </div>
+      )}
+    </div>
+      {fullscreen && (
+        <button
+          type="button"
+          onClick={toggleFullscreen}
+          className="flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground backdrop-blur transition-colors hover:border-primary/50 hover:text-primary"
+        >
+          <Minimize2 className="h-3.5 w-3.5" /> Exit fullscreen · Esc
+        </button>
+      )}
     </div>
   );
 }
