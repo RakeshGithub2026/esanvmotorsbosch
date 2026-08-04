@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight, Phone, ShoppingBag, ShieldCheck, Wrench, Award, Sparkles,
   Users, ScanLine, Truck, FileCheck, Layers, Star, CheckCircle2,
+  ZoomIn, ZoomOut, RotateCcw,
 } from "lucide-react";
 import { SiteLayout, SectionHeading } from "@/components/site/Layout";
 import { ReviewForm } from "@/components/site/ReviewForm";
@@ -36,23 +37,223 @@ export const Route = createFileRoute("/")({
 
 const WHY_ICONS = [Wrench, Award, Sparkles, ScanLine, ShieldCheck, Truck, FileCheck, Layers, Users];
 
-function Index() {
-  const tiltRef = useRef<HTMLDivElement>(null);
-  const [tilt, setTilt] = useState({ rx: 4, ry: -8, glareX: 70, glareY: 30, active: false });
+const VIEW_RESET = { rx: 4, ry: -8, scale: 1 };
+const clampNum = (v: number, min: number, max: number) => Math.min(max, Math.max(min, v));
 
-  const onTiltMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = tiltRef.current;
+function HeroViewer() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [view, setView] = useState(VIEW_RESET);
+  const [dragging, setDragging] = useState(false);
+  const [glare, setGlare] = useState({ x: 70, y: 30, on: false });
+  const viewRef = useRef(view);
+  viewRef.current = view;
+  const pointersRef = useRef(new Map<number, { x: number; y: number }>());
+  const dragRef = useRef<{
+    startX: number;
+    startY: number;
+    startRx: number;
+    startRy: number;
+    pinchDist: number;
+    startScale: number;
+  } | null>(null);
+
+  const reset = () => setView(VIEW_RESET);
+  const zoomBy = (factor: number) =>
+    setView((v) => ({ ...v, scale: clampNum(v.scale * factor, 1, 2.5) }));
+
+  // Native non-passive wheel listener — React's onWheel is passive, so
+  // preventDefault() there is ignored and the page would scroll behind the card.
+  useEffect(() => {
+    const el = containerRef.current;
     if (!el) return;
-    const r = el.getBoundingClientRect();
-    const px = (e.clientX - r.left) / r.width;
-    const py = (e.clientY - r.top) / r.height;
-    const ry = (px - 0.5) * -18; // -9..9deg
-    const rx = (py - 0.5) * 12; // -6..6deg
-    setTilt({ rx, ry, glareX: px * 100, glareY: py * 100, active: true });
-  };
-  const onTiltLeave = () =>
-    setTilt({ rx: 4, ry: -8, glareX: 70, glareY: 30, active: false });
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      const dy = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? 100 : 1);
+      const factor = Math.exp(-dy * 0.002);
+      setView((v) => ({ ...v, scale: clampNum(v.scale * factor, 1, 2.5) }));
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, []);
 
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    (e.target as Element).setPointerCapture?.(e.pointerId);
+    pointersRef.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pointersRef.current.size === 1) {
+      dragRef.current = {
+        startX: e.clientX,
+        startY: e.clientY,
+        startRx: viewRef.current.rx,
+        startRy: viewRef.current.ry,
+        pinchDist: 0,
+        startScale: viewRef.current.scale,
+      };
+      setDragging(true);
+    } else if (pointersRef.current.size === 2 && dragRef.current) {
+      const [a, b] = [...pointersRef.current.values()];
+      dragRef.current.pinchDist = Math.hypot(a.x - b.x, a.y - b.y);
+      dragRef.current.startScale = viewRef.current.scale;
+    }
+  };
+
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const el = containerRef.current;
+    if (el) {
+      const r = el.getBoundingClientRect();
+      setGlare({
+        x: ((e.clientX - r.left) / r.width) * 100,
+        y: ((e.clientY - r.top) / r.height) * 100,
+        on: true,
+      });
+    }
+    const d = dragRef.current;
+    if (!d || !pointersRef.current.has(e.pointerId)) return;
+    pointersRef.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pointersRef.current.size === 2 && d.pinchDist > 0) {
+      // Two-finger pinch zoom
+      const [a, b] = [...pointersRef.current.values()];
+      const dist = Math.hypot(a.x - b.x, a.y - b.y);
+      setView((v) => ({ ...v, scale: clampNum(d.startScale * (dist / d.pinchDist), 1, 2.5) }));
+    } else if (pointersRef.current.size === 1) {
+      // Drag to rotate
+      setView((v) => ({
+        ...v,
+        ry: clampNum(d.startRy + (e.clientX - d.startX) * 0.25, -45, 45),
+        rx: clampNum(d.startRx - (e.clientY - d.startY) * 0.25, -30, 30),
+      }));
+    }
+  };
+
+  const endPointer = (e: React.PointerEvent<HTMLDivElement>) => {
+    pointersRef.current.delete(e.pointerId);
+    if (pointersRef.current.size === 0) {
+      dragRef.current = null;
+      setDragging(false);
+    } else if (pointersRef.current.size === 1) {
+      // Re-anchor on the remaining finger so rotation doesn't jump
+      const [p] = [...pointersRef.current.values()];
+      dragRef.current = {
+        startX: p.x,
+        startY: p.y,
+        startRx: viewRef.current.rx,
+        startRy: viewRef.current.ry,
+        pinchDist: 0,
+        startScale: viewRef.current.scale,
+      };
+    }
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      role="group"
+      aria-label="3D showcase viewer — drag to rotate, scroll or pinch to zoom"
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={endPointer}
+      onPointerCancel={endPointer}
+      onPointerLeave={() => setGlare((g) => ({ ...g, on: false }))}
+      onDoubleClick={() => setView((v) => ({ ...v, scale: v.scale > 1 ? 1 : 1.75 }))}
+      className="group/tilt relative select-none [perspective:1400px] [touch-action:none]"
+      style={{ cursor: dragging ? "grabbing" : "grab" }}
+    >
+      <div
+        className="relative overflow-hidden rounded-3xl glow-red will-change-transform"
+        style={{
+          transform: `rotateX(${view.rx}deg) rotateY(${view.ry}deg) scale(${view.scale})`,
+          transition: dragging ? "none" : "transform 250ms ease-out",
+          transformStyle: "preserve-3d",
+        }}
+      >
+        <img
+          src={IMAGES.heroCar}
+          srcSet={`${heroCar640} 640w, ${heroCar960} 960w, ${heroCar1280} 1280w`}
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          alt="Premium luxury SUV at the ESANV Motors workshop"
+          width={1280}
+          height={960}
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          draggable={false}
+          className="h-full w-full object-cover"
+        />
+        {/* Glare */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 mix-blend-overlay transition-opacity duration-300"
+          style={{
+            opacity: glare.on ? 1 : 0,
+            background: `radial-gradient(circle at ${glare.x}% ${glare.y}%, rgba(255,255,255,0.35), transparent 45%)`,
+          }}
+        />
+      </div>
+      <div
+        className="absolute left-4 top-4 rounded-2xl border border-border bg-background/80 px-4 py-3 backdrop-blur"
+        style={{ transform: "translateZ(40px)" }}
+      >
+        <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Diagnostic</p>
+        <p className="font-display text-lg font-bold text-primary">ONLINE</p>
+      </div>
+      <div
+        className="absolute bottom-4 left-4 rounded-2xl border border-border bg-background/80 px-4 py-3 backdrop-blur"
+        style={{ transform: "translateZ(40px)" }}
+      >
+        <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Brands</p>
+        <p className="font-display text-lg font-bold">All Covered</p>
+      </div>
+      <div
+        className="absolute bottom-4 right-4 rounded-2xl border border-border bg-background/80 px-4 py-3 backdrop-blur"
+        style={{ transform: "translateZ(40px)" }}
+      >
+        <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Services</p>
+        <p className="font-display text-lg font-bold text-primary">50+</p>
+      </div>
+
+      {/* Viewer controls */}
+      <div
+        className="absolute right-4 top-4 flex items-center gap-1 rounded-full border border-border bg-background/80 p-1 backdrop-blur"
+        onPointerDown={(e) => e.stopPropagation()}
+        onDoubleClick={(e) => e.stopPropagation()}
+      >
+        <button
+          type="button"
+          onClick={() => zoomBy(1 / 1.25)}
+          aria-label="Zoom out"
+          className="rounded-full p-2 text-foreground transition-colors hover:bg-primary/15 hover:text-primary"
+        >
+          <ZoomOut className="h-4 w-4" />
+        </button>
+        <span className="min-w-[3rem] text-center text-[10px] font-semibold tabular-nums text-muted-foreground">
+          {Math.round(view.scale * 100)}%
+        </span>
+        <button
+          type="button"
+          onClick={() => zoomBy(1.25)}
+          aria-label="Zoom in"
+          className="rounded-full p-2 text-foreground transition-colors hover:bg-primary/15 hover:text-primary"
+        >
+          <ZoomIn className="h-4 w-4" />
+        </button>
+        <button
+          type="button"
+          onClick={reset}
+          aria-label="Reset view"
+          className="rounded-full p-2 text-foreground transition-colors hover:bg-primary/15 hover:text-primary"
+        >
+          <RotateCcw className="h-4 w-4" />
+        </button>
+      </div>
+
+      {/* Hint */}
+      <div className="pointer-events-none absolute inset-x-0 -bottom-8 text-center text-[10px] uppercase tracking-widest text-muted-foreground">
+        Drag to rotate · Scroll / pinch to zoom · Double-click to zoom
+      </div>
+    </div>
+  );
+}
+
+function Index() {
   return (
     <SiteLayout>
       {/* Hero */}
@@ -119,64 +320,7 @@ function Index() {
             </div>
           </div>
 
-          <div
-            ref={tiltRef}
-            onMouseMove={onTiltMove}
-            onMouseLeave={onTiltLeave}
-            className="group/tilt relative [perspective:1400px]"
-          >
-            <div
-              className="relative overflow-hidden rounded-3xl glow-red will-change-transform"
-              style={{
-                transform: `rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
-                transition: tilt.active ? "transform 120ms ease-out" : "transform 500ms ease-out",
-                transformStyle: "preserve-3d",
-              }}
-            >
-              <img
-                src={IMAGES.heroCar}
-                srcSet={`${heroCar640} 640w, ${heroCar960} 960w, ${heroCar1280} 1280w`}
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                alt="Premium luxury SUV at the ESANV Motors workshop"
-                width={1280}
-                height={960}
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-                className="h-full w-full object-cover"
-              />
-              {/* Glare */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 mix-blend-overlay transition-opacity duration-300"
-                style={{
-                  opacity: tilt.active ? 1 : 0,
-                  background: `radial-gradient(circle at ${tilt.glareX}% ${tilt.glareY}%, rgba(255,255,255,0.35), transparent 45%)`,
-                }}
-              />
-            </div>
-            <div
-              className="absolute left-4 top-4 rounded-2xl border border-border bg-background/80 px-4 py-3 backdrop-blur"
-              style={{ transform: "translateZ(40px)" }}
-            >
-              <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Diagnostic</p>
-              <p className="font-display text-lg font-bold text-primary">ONLINE</p>
-            </div>
-            <div
-              className="absolute bottom-4 left-4 rounded-2xl border border-border bg-background/80 px-4 py-3 backdrop-blur"
-              style={{ transform: "translateZ(40px)" }}
-            >
-              <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Brands</p>
-              <p className="font-display text-lg font-bold">All Covered</p>
-            </div>
-            <div
-              className="absolute bottom-4 right-4 rounded-2xl border border-border bg-background/80 px-4 py-3 backdrop-blur"
-              style={{ transform: "translateZ(40px)" }}
-            >
-              <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Services</p>
-              <p className="font-display text-lg font-bold text-primary">50+</p>
-            </div>
-          </div>
+          <HeroViewer />
         </div>
 
         <div className="relative border-y border-primary/40 bg-gradient-to-r from-card via-background to-card">
