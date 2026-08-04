@@ -320,64 +320,7 @@ function Index() {
             </div>
           </div>
 
-          <div
-            ref={tiltRef}
-            onMouseMove={onTiltMove}
-            onMouseLeave={onTiltLeave}
-            className="group/tilt relative [perspective:1400px]"
-          >
-            <div
-              className="relative overflow-hidden rounded-3xl glow-red will-change-transform"
-              style={{
-                transform: `rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
-                transition: tilt.active ? "transform 120ms ease-out" : "transform 500ms ease-out",
-                transformStyle: "preserve-3d",
-              }}
-            >
-              <img
-                src={IMAGES.heroCar}
-                srcSet={`${heroCar640} 640w, ${heroCar960} 960w, ${heroCar1280} 1280w`}
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                alt="Premium luxury SUV at the ESANV Motors workshop"
-                width={1280}
-                height={960}
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-                className="h-full w-full object-cover"
-              />
-              {/* Glare */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 mix-blend-overlay transition-opacity duration-300"
-                style={{
-                  opacity: tilt.active ? 1 : 0,
-                  background: `radial-gradient(circle at ${tilt.glareX}% ${tilt.glareY}%, rgba(255,255,255,0.35), transparent 45%)`,
-                }}
-              />
-            </div>
-            <div
-              className="absolute left-4 top-4 rounded-2xl border border-border bg-background/80 px-4 py-3 backdrop-blur"
-              style={{ transform: "translateZ(40px)" }}
-            >
-              <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Diagnostic</p>
-              <p className="font-display text-lg font-bold text-primary">ONLINE</p>
-            </div>
-            <div
-              className="absolute bottom-4 left-4 rounded-2xl border border-border bg-background/80 px-4 py-3 backdrop-blur"
-              style={{ transform: "translateZ(40px)" }}
-            >
-              <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Brands</p>
-              <p className="font-display text-lg font-bold">All Covered</p>
-            </div>
-            <div
-              className="absolute bottom-4 right-4 rounded-2xl border border-border bg-background/80 px-4 py-3 backdrop-blur"
-              style={{ transform: "translateZ(40px)" }}
-            >
-              <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Services</p>
-              <p className="font-display text-lg font-bold text-primary">50+</p>
-            </div>
-          </div>
+          <HeroViewer />
         </div>
 
         <div className="relative border-y border-primary/40 bg-gradient-to-r from-card via-background to-card">
