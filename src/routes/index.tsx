@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight, Phone, ShoppingBag, ShieldCheck, Wrench, Award, Sparkles,
   Users, ScanLine, Truck, FileCheck, Layers, Star, CheckCircle2,
-  ZoomIn, ZoomOut, RotateCcw,
+  ZoomIn, ZoomOut, RotateCcw, Maximize2, Minimize2,
 } from "lucide-react";
 import { SiteLayout, SectionHeading } from "@/components/site/Layout";
 import { ReviewForm } from "@/components/site/ReviewForm";
@@ -42,9 +42,13 @@ const clampNum = (v: number, min: number, max: number) => Math.min(max, Math.max
 
 function HeroViewer() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const shellRef = useRef<HTMLDivElement>(null);
   const [view, setView] = useState(VIEW_RESET);
   const [dragging, setDragging] = useState(false);
   const [glare, setGlare] = useState({ x: 70, y: 30, on: false });
+  const [nativeFs, setNativeFs] = useState(false);
+  const [fallbackFs, setFallbackFs] = useState(false);
+  const fullscreen = nativeFs || fallbackFs;
   const viewRef = useRef(view);
   viewRef.current = view;
   const pointersRef = useRef(new Map<number, { x: number; y: number }>());
@@ -75,6 +79,49 @@ function HeroViewer() {
     el.addEventListener("wheel", onWheel, { passive: false });
     return () => el.removeEventListener("wheel", onWheel);
   }, []);
+
+  // Track native fullscreen changes (Esc exits fullscreen natively)
+  useEffect(() => {
+    const onChange = () => setNativeFs(document.fullscreenElement === shellRef.current);
+    document.addEventListener("fullscreenchange", onChange);
+    return () => document.removeEventListener("fullscreenchange", onChange);
+  }, []);
+
+  // Fallback fullscreen (browsers without element fullscreen, e.g. iOS Safari):
+  // Escape-to-exit + lock page scroll behind the overlay.
+  useEffect(() => {
+    if (!fallbackFs) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setFallbackFs(false);
+    };
+    document.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [fallbackFs]);
+
+  const toggleFullscreen = async () => {
+    if (nativeFs) {
+      await document.exitFullscreen().catch(() => {});
+      return;
+    }
+    if (fallbackFs) {
+      setFallbackFs(false);
+      return;
+    }
+    if (shellRef.current?.requestFullscreen) {
+      try {
+        await shellRef.current.requestFullscreen();
+        return;
+      } catch {
+        // fall through to overlay mode
+      }
+    }
+    setFallbackFs(true);
+  };
 
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     (e.target as Element).setPointerCapture?.(e.pointerId);
