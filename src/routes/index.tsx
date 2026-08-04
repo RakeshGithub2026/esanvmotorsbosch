@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight, Phone, ShoppingBag, ShieldCheck, Wrench, Award, Sparkles,
   Users, ScanLine, Truck, FileCheck, Layers, Star, CheckCircle2,
+  ZoomIn, ZoomOut, RotateCcw,
 } from "lucide-react";
 import { SiteLayout, SectionHeading } from "@/components/site/Layout";
 import { ReviewForm } from "@/components/site/ReviewForm";
