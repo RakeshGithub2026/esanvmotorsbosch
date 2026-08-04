@@ -80,12 +80,22 @@ function HeroViewer() {
     return () => el.removeEventListener("wheel", onWheel);
   }, []);
 
-  // Track native fullscreen changes (Esc exits fullscreen natively)
+  // Track native fullscreen changes (Esc usually exits natively, but also
+  // handle it explicitly so Escape-to-exit works in every environment)
   useEffect(() => {
     const onChange = () => setNativeFs(document.fullscreenElement === shellRef.current);
     document.addEventListener("fullscreenchange", onChange);
     return () => document.removeEventListener("fullscreenchange", onChange);
   }, []);
+
+  useEffect(() => {
+    if (!nativeFs) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") void document.exitFullscreen().catch(() => {});
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [nativeFs]);
 
   // Fallback fullscreen (browsers without element fullscreen, e.g. iOS Safari):
   // Escape-to-exit + lock page scroll behind the overlay.
