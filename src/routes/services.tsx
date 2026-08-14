@@ -65,9 +65,6 @@ function Services() {
                     <h2 className="font-display text-lg font-bold">{c.name}</h2>
                     <p className="mt-1 text-sm text-muted-foreground">{c.tagline}</p>
                   </div>
-                  <span className="shrink-0 rounded-full border border-border bg-secondary px-2.5 py-1 text-[11px] font-semibold text-primary">
-                    {c.items.length}
-                  </span>
                 </div>
               </button>
             );
