@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Wrench } from "lucide-react";
+import { ArrowRight, Check, Wrench } from "lucide-react";
 import { SiteLayout, SectionHeading } from "@/components/site/Layout";
-import { SERVICES, EXTRA_SERVICES } from "@/lib/site-data";
+import { BeforeAfterGrid } from "@/components/site/BeforeAfter";
+import { SERVICE_CATEGORIES, EXTRA_SERVICES } from "@/lib/site-data";
+import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -23,6 +26,9 @@ export const Route = createFileRoute("/services")({
 });
 
 function Services() {
+  const [active, setActive] = useState(SERVICE_CATEGORIES[0].id);
+  const current = SERVICE_CATEGORIES.find((c) => c.id === active) ?? SERVICE_CATEGORIES[0];
+
   return (
     <SiteLayout>
       <section className="border-b border-border bg-card/30 py-16">
@@ -37,18 +43,53 @@ function Services() {
 
       <section className="container-page py-16">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((s) => (
-            <article key={s.name} className="group overflow-hidden rounded-2xl border border-border bg-card">
-              <div className="aspect-[4/3] overflow-hidden">
-                <img decoding="async" src={s.img} alt={s.name} loading="lazy" width={800} height={600}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          {SERVICE_CATEGORIES.map((c) => {
+            const isActive = c.id === active;
+            return (
+              <button
+                key={c.id}
+                type="button"
+                onClick={() => setActive(c.id)}
+                aria-pressed={isActive}
+                className={cn(
+                  "group overflow-hidden rounded-2xl border bg-card text-left transition-all",
+                  isActive ? "border-primary glow-red" : "border-border hover:border-primary/50",
+                )}
+              >
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img decoding="async" src={c.img} alt={c.name} loading="lazy" width={800} height={600}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                </div>
+                <div className="flex items-center justify-between gap-3 p-5">
+                  <div>
+                    <h2 className="font-display text-lg font-bold">{c.name}</h2>
+                    <p className="mt-1 text-sm text-muted-foreground">{c.tagline}</p>
+                  </div>
+                  <span className="shrink-0 rounded-full border border-border bg-secondary px-2.5 py-1 text-[11px] font-semibold text-primary">
+                    {c.items.length}
+                  </span>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mt-10 rounded-2xl border border-border bg-card/60 p-6 sm:p-8">
+          <h3 className="font-display text-2xl font-bold">{current.name}</h3>
+          <p className="mt-1 text-sm text-muted-foreground">{current.tagline}</p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {current.items.map((s) => (
+              <div key={s.name} className="flex gap-3 rounded-xl border border-border bg-background/60 p-4">
+                <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
+                  <Check className="h-4 w-4" />
+                </span>
+                <div>
+                  <h4 className="font-display text-base font-bold">{s.name}</h4>
+                  <p className="mt-1 text-sm text-muted-foreground">{s.desc}</p>
+                </div>
               </div>
-              <div className="p-5">
-                <h3 className="font-display text-lg font-bold">{s.name}</h3>
-                <p className="mt-1 text-sm text-muted-foreground">{s.desc}</p>
-              </div>
-            </article>
-          ))}
+            ))}
+          </div>
         </div>
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -69,6 +110,19 @@ function Services() {
           <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground hover:scale-[1.03]">
             Book a Service <ArrowRight className="h-4 w-4" />
           </Link>
+        </div>
+      </section>
+
+      <section className="border-t border-border bg-card/30 py-16">
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="Before / After"
+            title="Real Transformations"
+            desc="Drag the slider on each photo to see the difference our painting, tinkering, headlight restoration, coating and detailing work makes."
+          />
+          <div className="mt-10">
+            <BeforeAfterGrid />
+          </div>
         </div>
       </section>
     </SiteLayout>
