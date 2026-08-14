@@ -38,19 +38,17 @@ function Slider({ item }: { item: (typeof BEFORE_AFTER)[number] }) {
           className="absolute inset-0 h-full w-full object-cover"
           draggable={false}
         />
-        <div className="absolute inset-0 overflow-hidden" style={{ width: `${pos}%` }}>
-          <img
-            src={item.before}
-            alt={`${item.title} — before`}
-            loading="lazy"
-            decoding="async"
-            width={1024}
-            height={768}
-            className="h-full w-full object-cover"
-            style={{ width: ref.current?.offsetWidth ? `${ref.current.offsetWidth}px` : "100%" }}
-            draggable={false}
-          />
-        </div>
+        <img
+          src={item.before}
+          alt={`${item.title} — before`}
+          loading="lazy"
+          decoding="async"
+          width={1024}
+          height={768}
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
+          draggable={false}
+        />
 
         <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-background/80 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-foreground backdrop-blur">
           Before
