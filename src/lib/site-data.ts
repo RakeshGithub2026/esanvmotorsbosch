@@ -53,6 +53,16 @@ import galServiceArea from "@/assets/gallery/service-area.png.asset.json";
 import galWaterWash from "@/assets/gallery/water-wash.png.asset.json";
 import galShowroomFront from "@/assets/gallery/showroom-front.png.asset.json";
 import galAccessoriesStore from "@/assets/gallery/accessories-store.png.asset.json";
+import baPaintBefore from "@/assets/ba/paint-before.webp";
+import baPaintAfter from "@/assets/ba/paint-after.webp";
+import baDentBefore from "@/assets/ba/dent-before.webp";
+import baDentAfter from "@/assets/ba/dent-after.webp";
+import baHeadBefore from "@/assets/ba/headlight-before.webp";
+import baHeadAfter from "@/assets/ba/headlight-after.webp";
+import baCeramicBefore from "@/assets/ba/ceramic-before.webp";
+import baCeramicAfter from "@/assets/ba/ceramic-after.webp";
+import baInteriorBefore from "@/assets/ba/interior-before.webp";
+import baInteriorAfter from "@/assets/ba/interior-after.webp";
 
 export const CONTACT = {
   name: "ESANV Motors",
@@ -109,7 +119,7 @@ export const SERVICES = [
   { name: "All Car Service", desc: "Periodic maintenance and complete multi-brand car servicing.", img: svcGeneral },
   { name: "Mechanical & Electrical", desc: "Engine, transmission and full electrical repair works.", img: svcMechanical },
   { name: "Diagnostic & Scanning", desc: "Advanced computerised diagnostics for every brand.", img: svcDiagnostic },
-  { name: "Scanning & Electronics", desc: "ECU, sensor and electronic module repair & coding.", img: svcElectronics },
+  { name: "Electronics & ECU Repair", desc: "ECU, sensor and electronic module repair & coding.", img: svcElectronics },
   { name: "Painting", desc: "Full body & panel painting with premium finish.", img: svcPaint },
   { name: "Tinkering", desc: "Precision denting, tinkering and body straightening.", img: svcTinkering },
   { name: "Wheel Alignment", desc: "Computerised 3D alignment for perfect handling.", img: svcAlignment },
@@ -119,12 +129,96 @@ export const SERVICES = [
 ];
 
 export const EXTRA_SERVICES = [
-  { name: "AC Service & Gas Topup", desc: "Cooling checks, gas refill and AC repair." },
   { name: "Ceramic / Graphene / PPF", desc: "Premium paint protection & coating solutions." },
   { name: "Insurance Assistance", desc: "Renewal, claims and cashless support." },
   { name: "Accessories & Modification", desc: "Interior, exterior and performance upgrades." },
   { name: "Water Wash & Detailing", desc: "Foam wash, polishing and deep detailing." },
   { name: "Doorstep Pickup & Delivery", desc: "We collect and return your vehicle." },
+];
+
+export const SERVICE_CATEGORIES = [
+  {
+    id: "periodic",
+    name: "Periodic Service",
+    tagline: "Scheduled maintenance that keeps your car healthy.",
+    img: svcGeneral,
+    items: [
+      { name: "All Car Periodic Service", desc: "Manufacturer-schedule servicing for every make & model." },
+      { name: "Engine Oil & Filter Change", desc: "Genuine oils, oil / air / cabin filter replacement." },
+      { name: "AC Service & Gas Topup", desc: "Cooling checks, gas refill and complete AC repair." },
+      { name: "Doorstep Pickup & Delivery", desc: "We collect and return your vehicle." },
+    ],
+  },
+  {
+    id: "mechanical",
+    name: "Mechanical & Electrical",
+    tagline: "Engine, transmission and full electrical repair works.",
+    img: svcMechanical,
+    items: [
+      { name: "Engine & Transmission Repair", desc: "Overhaul, clutch, gearbox and timing works." },
+      { name: "Suspension & Steering", desc: "Shockers, bushes, linkages and steering repair." },
+      { name: "Brake System Service", desc: "Pads, discs, brake fluid and ABS repair." },
+      { name: "Battery & Wiring", desc: "Alternator, starter, battery and harness repair." },
+      { name: "24/7 Breakdown Assistance", desc: "Roadside help, day or night." },
+    ],
+  },
+  {
+    id: "diagnostics",
+    name: "Diagnostics",
+    tagline: "Advanced computerised scanning for every brand.",
+    img: svcDiagnostic,
+    items: [
+      { name: "Computerised Diagnostic Scanning", desc: "OBD & brand-specific scan tools with full fault report." },
+      { name: "Electronics & ECU Repair", desc: "ECU, sensor and electronic module repair & coding." },
+      { name: "Warning Light Troubleshooting", desc: "Check-engine, ABS, airbag and SRS diagnosis." },
+    ],
+  },
+  {
+    id: "bodyshop",
+    name: "Bodyshop & Painting",
+    tagline: "Accident repair, denting and premium paint finish.",
+    img: svcPaint,
+    items: [
+      { name: "Full Body & Panel Painting", desc: "Oven-baked premium finish with shade matching." },
+      { name: "Tinkering & Dent Removal", desc: "Precision denting and body straightening." },
+      { name: "Accident & Insurance Repair", desc: "Renewal, claim & cashless assistance." },
+      { name: "Modification & Facelift", desc: "Body kits, styling and exterior upgrades." },
+    ],
+  },
+  {
+    id: "wheel",
+    name: "Wheel Care",
+    tagline: "Alignment, balancing and tyre solutions.",
+    img: svcAlignment,
+    items: [
+      { name: "Computerised 3D Wheel Alignment", desc: "Precise alignment for perfect handling." },
+      { name: "Wheel Balancing", desc: "Vibration-free ride at every speed." },
+      { name: "Tyre Changing & Puncture", desc: "Tyre replacement, fitting and puncture repair." },
+      { name: "Alloy Wheels & Upgrades", desc: "Alloy fitment and wheel styling options." },
+    ],
+  },
+  {
+    id: "detailing",
+    name: "Detailing & Protection",
+    tagline: "Wash, polish and long-lasting paint protection.",
+    img: svcWash,
+    items: [
+      { name: "Water Wash & Foam Wash", desc: "Exterior wash with pressure & foam treatment." },
+      { name: "Interior Deep Cleaning", desc: "Seats, roof lining and dashboard detailing." },
+      { name: "Ceramic & Graphene Coating", desc: "9H gloss, hydrophobic and heat-resistant coatings." },
+      { name: "Paint Protection Film (PPF)", desc: "Self-healing film against chips & scratches." },
+      { name: "Headlight Restoration", desc: "Polishing back the clarity of yellowed lenses." },
+      { name: "Accessories & Interiors", desc: "Seat covers, mats, sunfilm and styling." },
+    ],
+  },
+];
+
+export const BEFORE_AFTER = [
+  { title: "Painting & Scratch Removal", tag: "Bodyshop", before: baPaintBefore, after: baPaintAfter },
+  { title: "Tinkering & Dent Repair", tag: "Bodyshop", before: baDentBefore, after: baDentAfter },
+  { title: "Headlight Restoration", tag: "Detailing", before: baHeadBefore, after: baHeadAfter },
+  { title: "Ceramic Coating & PPF", tag: "Protection", before: baCeramicBefore, after: baCeramicAfter },
+  { title: "Interior Deep Cleaning", tag: "Detailing", before: baInteriorBefore, after: baInteriorAfter },
 ];
 
 export const ACCESSORIES = [
