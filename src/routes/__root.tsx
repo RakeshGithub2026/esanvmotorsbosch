@@ -122,7 +122,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           priceRange: "₹₹",
           address: {
             "@type": "PostalAddress",
-            streetAddress: "Gopinathampatti Koot Road, near Harur",
+            streetAddress: "Gobinathampatti Koot Road, near Harur",
             addressLocality: "Harur",
             addressRegion: "Tamil Nadu",
             postalCode: "636905",

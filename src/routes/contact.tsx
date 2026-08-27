@@ -41,7 +41,7 @@ function Contact() {
 
         <div className="rounded-2xl border border-border bg-card p-6">
           <h3 className="font-display text-xl font-bold">Visit the Workshop</h3>
-          <p className="mt-1 text-sm text-muted-foreground">Gopinathampatti Koot Road, near Harur, Dharmapuri District</p>
+          <p className="mt-1 text-sm text-muted-foreground">Gobinathampatti Koot Road, near Harur, Dharmapuri District</p>
           <span className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-semibold">
             <span className="h-2 w-2 animate-pulse rounded-full bg-green-500" /> Open Now
           </span>
@@ -54,7 +54,7 @@ function Contact() {
           <div className="mt-6 overflow-hidden rounded-xl border border-border">
             <iframe
               title="ESANV Motors location on Google Maps"
-              src={`https://www.google.com/maps?q=${encodeURIComponent("Esanv Motors, Gopinathampatti Koot Road, Harur, Dharmapuri 636905")}&output=embed`}
+              src={`https://www.google.com/maps?q=${encodeURIComponent("Esanv Motors, Gobinathampatti Koot Road, Harur, Dharmapuri 636905")}&output=embed`}
               width="100%"
               height="320"
               loading="lazy"

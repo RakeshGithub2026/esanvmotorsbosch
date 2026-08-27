@@ -15,7 +15,7 @@ export function Footer() {
               className="h-20 w-20 rounded-xl object-contain" />
           </div>
           <p className="mt-4 max-w-md text-sm text-muted-foreground">
-            Your trusted multi-brand car service center on Gopinathampatti Koot Road,
+            Your trusted multi-brand car service center on Gobinathampatti Koot Road,
             near Harur, Dharmapuri District — proud
             partner with Bosch Car Service. Complete car care, coatings, diagnostics
             and genuine accessories under one roof.
@@ -59,7 +59,7 @@ export function Footer() {
       <div className="border-t border-border">
         <div className="container-page flex flex-col items-center justify-between gap-2 py-5 text-xs text-muted-foreground sm:flex-row">
           <p>© {new Date().getFullYear()} ESANV Motors. All rights reserved.</p>
-          <p>Partner with BOSCH CAR SERVICE · Gopinathampatti Koot Rd, Harur, Dharmapuri</p>
+          <p>Partner with BOSCH CAR SERVICE · Gobinathampatti Koot Rd, Harur, Dharmapuri</p>
           <p>Developed by Rakesh@2026</p>
         </div>
       </div>

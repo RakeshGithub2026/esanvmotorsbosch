@@ -42,7 +42,7 @@ function Services() {
       </section>
 
       <section className="container-page py-16">
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid auto-rows-fr gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICE_CATEGORIES.map((c) => {
             const isActive = c.id === active;
             return (
@@ -52,19 +52,24 @@ function Services() {
                 onClick={() => setActive(c.id)}
                 aria-pressed={isActive}
                 className={cn(
-                  "group overflow-hidden rounded-2xl border bg-card text-left transition-all",
-                  isActive ? "border-primary glow-red" : "border-border hover:border-primary/50",
+                  "group flex h-full w-full flex-col overflow-hidden rounded-2xl border bg-card text-left transition-all",
+                  isActive ? "border-primary glow-primary" : "border-border hover:border-primary/50",
                 )}
               >
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img decoding="async" src={c.img} alt={c.name} loading="lazy" width={800} height={600}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-muted">
+                  <img
+                    decoding="async"
+                    src={c.img}
+                    alt={c.name}
+                    loading="lazy"
+                    width={800}
+                    height={600}
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
-                <div className="flex items-center justify-between gap-3 p-5">
-                  <div>
-                    <h2 className="font-display text-lg font-bold">{c.name}</h2>
-                    <p className="mt-1 text-sm text-muted-foreground">{c.tagline}</p>
-                  </div>
+                <div className="flex flex-1 flex-col justify-center p-5">
+                  <h2 className="font-display text-lg font-bold">{c.name}</h2>
+                  <p className="mt-1 text-sm text-muted-foreground">{c.tagline}</p>
                 </div>
               </button>
             );

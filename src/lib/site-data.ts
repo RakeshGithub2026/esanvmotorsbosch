@@ -70,10 +70,10 @@ export const CONTACT = {
   phoneHref: "tel:+919965811776",
   whatsapp: "919965811776",
   email: "esanvmotor@gmail.com",
-  address: "Gopinathampatti Koot Road, near Harur, Dharmapuri District – 636905",
+  address: "Gobinathampatti Koot Road, near Harur, Dharmapuri District – 636905",
   hours: "Mon – Sun · 9:00 AM – 8:00 PM",
   store: "https://vyaparapp.in/store/esanvmotors1",
-  maps: "https://www.google.com/maps/search/?api=1&query=Esanv%20Motors%2C%20Gopinathampatti%20Koot%20Road%2C%20Harur%2C%20Dharmapuri%20636905",
+  maps: "https://www.google.com/maps/search/?api=1&query=Esanv%20Motors%2C%20Gobinathampatti%20Koot%20Road%2C%20Harur%2C%20Dharmapuri%20636905",
   instagram: "https://instagram.com",
 };
 
