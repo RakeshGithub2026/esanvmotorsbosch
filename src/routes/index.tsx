@@ -363,7 +363,7 @@ function Index() {
                 <span className="h-2 w-2 animate-pulse rounded-full bg-green-500" /> Open Now
               </span>
               <span className="rounded-full border border-border bg-secondary px-3 py-1">
-                Gopinathampatti Koot Rd, Harur
+                Gobinathampatti Koot Rd, Harur
               </span>
             </div>
             <div className="mt-6 flex items-center gap-4">
@@ -379,7 +379,7 @@ function Index() {
               Partner with <span className="text-primary">BOSCH CAR SERVICE</span>
             </p>
             <p className="mt-4 max-w-xl text-muted-foreground">
-              Your trusted multi-brand car service center on Gopinathampatti Koot Road,
+              Your trusted multi-brand car service center on Gobinathampatti Koot Road,
               near Harur, Dharmapuri District. Expert
               car service, diagnostics, bodyshop works, wheel alignment, water wash,
               accessories, seat covers, sunfilms and complete car care for all major brands.
@@ -428,7 +428,7 @@ function Index() {
         <SectionHeading
           eyebrow="About ESANV Motors"
           title="Complete Car Care Under One Roof"
-          desc="ESANV Motors is a professional multi-brand car service center and accessories destination on Gopinathampatti Koot Road, near Harur, Dharmapuri District – 636905. As a trusted Bosch Car Service partner, we deliver high-quality vehicle care with advanced tools, trained technicians and genuine products."
+          desc="ESANV Motors is a professional multi-brand car service center and accessories destination on Gobinathampatti Koot Road, near Harur, Dharmapuri District – 636905. As a trusted Bosch Car Service partner, we deliver high-quality vehicle care with advanced tools, trained technicians and genuine products."
         />
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
