@@ -7,6 +7,8 @@ import {
 } from "lucide-react";
 import { SiteLayout, SectionHeading } from "@/components/site/Layout";
 import { ReviewForm } from "@/components/site/ReviewForm";
+import { Reveal } from "@/components/site/Reveal";
+import { StatCounter } from "@/components/site/StatCounter";
 import heroBg3d from "@/assets/hero-bg-3d.webp";
 import heroCar640 from "@/assets/hero-car-640.webp";
 import heroCar960 from "@/assets/hero-car-960.webp";
@@ -443,6 +445,16 @@ function Index() {
               <p className="mt-1 text-sm text-muted-foreground">{c.d}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Animated stats — trust & conversion */}
+      <section className="border-y border-border bg-card/30 py-12">
+        <div className="container-page grid grid-cols-2 gap-8 lg:grid-cols-4">
+          <StatCounter value={50} suffix="+" label="Car Services" />
+          <StatCounter value={18} suffix="+" label="Brands Covered" />
+          <StatCounter value={7} suffix="" label="Days Open a Week" />
+          <StatCounter value={24} suffix="/7" label="Breakdown Support" />
         </div>
       </section>
 
