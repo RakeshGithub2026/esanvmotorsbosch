@@ -7,6 +7,8 @@ import {
 } from "lucide-react";
 import { SiteLayout, SectionHeading } from "@/components/site/Layout";
 import { ReviewForm } from "@/components/site/ReviewForm";
+import { Reveal } from "@/components/site/Reveal";
+import { StatCounter } from "@/components/site/StatCounter";
 import heroBg3d from "@/assets/hero-bg-3d.webp";
 import heroCar640 from "@/assets/hero-car-640.webp";
 import heroCar960 from "@/assets/hero-car-960.webp";
@@ -31,6 +33,28 @@ export const Route = createFileRoute("/")({
       { property: "og:url", content: "https://esanvmotorsbosch.lovable.app/" },
     ],
     links: [{ rel: "canonical", href: "https://esanvmotorsbosch.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "AutoRepair",
+          name: "ESANV Motors",
+          url: "https://esanvmotorsbosch.lovable.app",
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: "5",
+            reviewCount: String(REVIEWS.length),
+          },
+          review: REVIEWS.map((r) => ({
+            "@type": "Review",
+            reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+            author: { "@type": "Person", name: r.name },
+            reviewBody: r.text,
+          })),
+        }),
+      },
+    ],
   }),
   component: Index,
 });
@@ -424,7 +448,8 @@ function Index() {
       </section>
 
       {/* About */}
-      <section className="container-page py-20">
+      <Reveal>
+<section className="container-page py-20">
         <SectionHeading
           eyebrow="About ESANV Motors"
           title="Complete Car Care Under One Roof"
@@ -445,9 +470,23 @@ function Index() {
           ))}
         </div>
       </section>
+</Reveal>
+
+      {/* Animated stats — trust & conversion */}
+      <Reveal>
+<section className="border-y border-border bg-card/30 py-12">
+        <div className="container-page grid grid-cols-2 gap-8 lg:grid-cols-4">
+          <StatCounter value={50} suffix="+" label="Car Services" />
+          <StatCounter value={18} suffix="+" label="Brands Covered" />
+          <StatCounter value={7} suffix="" label="Days Open a Week" />
+          <StatCounter value={24} suffix="/7" label="Breakdown Support" />
+        </div>
+      </section>
+</Reveal>
 
       {/* Why us */}
-      <section className="border-y border-border bg-card/30 py-20">
+      <Reveal>
+<section className="border-y border-border bg-card/30 py-20">
         <div className="container-page">
           <SectionHeading
             eyebrow="Why Choose Us"
@@ -471,9 +510,11 @@ function Index() {
           </div>
         </div>
       </section>
+</Reveal>
 
       {/* Services */}
-      <section className="container-page py-20">
+      <Reveal>
+<section className="container-page py-20">
         <SectionHeading
           eyebrow="Our Services"
           title="50+ Professional Car Services"
@@ -500,9 +541,11 @@ function Index() {
           </Link>
         </div>
       </section>
+</Reveal>
 
       {/* Online store */}
-      <section className="border-y border-border bg-card/30 py-20">
+      <Reveal>
+<section className="border-y border-border bg-card/30 py-20">
         <div className="container-page grid items-center gap-10 lg:grid-cols-2">
           <div>
             <SectionHeading
@@ -551,9 +594,11 @@ function Index() {
           </div>
         </div>
       </section>
+</Reveal>
 
       {/* Coatings */}
-      <section className="container-page py-20">
+      <Reveal>
+<section className="container-page py-20">
         <SectionHeading
           eyebrow="Premium Coatings"
           title="Ceramic, Graphene & PPF Protection"
@@ -575,9 +620,11 @@ function Index() {
           ))}
         </div>
       </section>
+</Reveal>
 
       {/* Showroom */}
-      <section className="container-page py-20">
+      <Reveal>
+<section className="container-page py-20">
         <SectionHeading
           eyebrow="Accessories Showroom"
           title="Premium Accessories & Modifications"
@@ -598,9 +645,11 @@ function Index() {
           ))}
         </div>
       </section>
+</Reveal>
 
       {/* Brands */}
-      <section className="border-y border-border bg-card/30 py-20">
+      <Reveal>
+<section className="border-y border-border bg-card/30 py-20">
         <div className="container-page">
           <SectionHeading
             eyebrow="Brands Covered"
@@ -621,9 +670,11 @@ function Index() {
           </div>
         </div>
       </section>
+</Reveal>
 
       {/* Gallery preview */}
-      <section className="container-page py-20">
+      <Reveal>
+<section className="container-page py-20">
         <SectionHeading
           eyebrow="Gallery"
           title="Our Workshop & Company Photos"
@@ -647,9 +698,11 @@ function Index() {
           </Link>
         </div>
       </section>
+</Reveal>
 
       {/* Reviews */}
-      <section className="border-y border-border bg-card/30 py-20">
+      <Reveal>
+<section className="border-y border-border bg-card/30 py-20">
         <div className="container-page">
           <SectionHeading
             eyebrow="Customer Reviews"
@@ -681,9 +734,11 @@ function Index() {
           </div>
         </div>
       </section>
+</Reveal>
 
       {/* CTA */}
-      <section className="container-page py-20">
+      <Reveal>
+<section className="container-page py-20">
         <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-10 text-center glow-red">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,oklch(0.83_0.25_140/0.18),transparent)]" />
           <div className="relative">
@@ -702,6 +757,7 @@ function Index() {
           </div>
         </div>
       </section>
+</Reveal>
     </SiteLayout>
   );
 }
