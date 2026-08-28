@@ -448,7 +448,8 @@ function Index() {
       </section>
 
       {/* About */}
-      <section className="container-page py-20">
+      <Reveal>
+<section className="container-page py-20">
         <SectionHeading
           eyebrow="About ESANV Motors"
           title="Complete Car Care Under One Roof"
@@ -469,9 +470,11 @@ function Index() {
           ))}
         </div>
       </section>
+</Reveal>
 
       {/* Animated stats — trust & conversion */}
-      <section className="border-y border-border bg-card/30 py-12">
+      <Reveal>
+<section className="border-y border-border bg-card/30 py-12">
         <div className="container-page grid grid-cols-2 gap-8 lg:grid-cols-4">
           <StatCounter value={50} suffix="+" label="Car Services" />
           <StatCounter value={18} suffix="+" label="Brands Covered" />
@@ -479,9 +482,11 @@ function Index() {
           <StatCounter value={24} suffix="/7" label="Breakdown Support" />
         </div>
       </section>
+</Reveal>
 
       {/* Why us */}
-      <section className="border-y border-border bg-card/30 py-20">
+      <Reveal>
+<section className="border-y border-border bg-card/30 py-20">
         <div className="container-page">
           <SectionHeading
             eyebrow="Why Choose Us"
@@ -505,9 +510,11 @@ function Index() {
           </div>
         </div>
       </section>
+</Reveal>
 
       {/* Services */}
-      <section className="container-page py-20">
+      <Reveal>
+<section className="container-page py-20">
         <SectionHeading
           eyebrow="Our Services"
           title="50+ Professional Car Services"
@@ -534,9 +541,11 @@ function Index() {
           </Link>
         </div>
       </section>
+</Reveal>
 
       {/* Online store */}
-      <section className="border-y border-border bg-card/30 py-20">
+      <Reveal>
+<section className="border-y border-border bg-card/30 py-20">
         <div className="container-page grid items-center gap-10 lg:grid-cols-2">
           <div>
             <SectionHeading
@@ -585,9 +594,11 @@ function Index() {
           </div>
         </div>
       </section>
+</Reveal>
 
       {/* Coatings */}
-      <section className="container-page py-20">
+      <Reveal>
+<section className="container-page py-20">
         <SectionHeading
           eyebrow="Premium Coatings"
           title="Ceramic, Graphene & PPF Protection"
@@ -609,9 +620,11 @@ function Index() {
           ))}
         </div>
       </section>
+</Reveal>
 
       {/* Showroom */}
-      <section className="container-page py-20">
+      <Reveal>
+<section className="container-page py-20">
         <SectionHeading
           eyebrow="Accessories Showroom"
           title="Premium Accessories & Modifications"
@@ -632,9 +645,11 @@ function Index() {
           ))}
         </div>
       </section>
+</Reveal>
 
       {/* Brands */}
-      <section className="border-y border-border bg-card/30 py-20">
+      <Reveal>
+<section className="border-y border-border bg-card/30 py-20">
         <div className="container-page">
           <SectionHeading
             eyebrow="Brands Covered"
@@ -655,9 +670,11 @@ function Index() {
           </div>
         </div>
       </section>
+</Reveal>
 
       {/* Gallery preview */}
-      <section className="container-page py-20">
+      <Reveal>
+<section className="container-page py-20">
         <SectionHeading
           eyebrow="Gallery"
           title="Our Workshop & Company Photos"
@@ -681,9 +698,11 @@ function Index() {
           </Link>
         </div>
       </section>
+</Reveal>
 
       {/* Reviews */}
-      <section className="border-y border-border bg-card/30 py-20">
+      <Reveal>
+<section className="border-y border-border bg-card/30 py-20">
         <div className="container-page">
           <SectionHeading
             eyebrow="Customer Reviews"
@@ -715,9 +734,11 @@ function Index() {
           </div>
         </div>
       </section>
+</Reveal>
 
       {/* CTA */}
-      <section className="container-page py-20">
+      <Reveal>
+<section className="container-page py-20">
         <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-10 text-center glow-red">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,oklch(0.83_0.25_140/0.18),transparent)]" />
           <div className="relative">
@@ -736,6 +757,7 @@ function Index() {
           </div>
         </div>
       </section>
+</Reveal>
     </SiteLayout>
   );
 }
