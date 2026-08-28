@@ -33,6 +33,28 @@ export const Route = createFileRoute("/")({
       { property: "og:url", content: "https://esanvmotorsbosch.lovable.app/" },
     ],
     links: [{ rel: "canonical", href: "https://esanvmotorsbosch.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "AutoRepair",
+          name: "ESANV Motors",
+          url: "https://esanvmotorsbosch.lovable.app",
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: "5",
+            reviewCount: String(REVIEWS.length),
+          },
+          review: REVIEWS.map((r) => ({
+            "@type": "Review",
+            reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+            author: { "@type": "Person", name: r.name },
+            reviewBody: r.text,
+          })),
+        }),
+      },
+    ],
   }),
   component: Index,
 });
