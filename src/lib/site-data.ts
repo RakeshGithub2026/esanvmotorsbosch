@@ -25,34 +25,34 @@ import accSpeakers from "@/assets/acc-speakers.webp";
 import accLed from "@/assets/acc-led.webp";
 import accBodycover from "@/assets/acc-bodycover.webp";
 import accCleaning from "@/assets/acc-cleaning.webp";
-import esanvLogo from "@/assets/esanv-logo.jpeg.asset.json";
-import boschLogo from "@/assets/bosch-logo.jpeg.asset.json";
-import brHyundai from "@/assets/brands/hyundai.svg.asset.json";
-import brHonda from "@/assets/brands/honda.svg.asset.json";
-import brTata from "@/assets/brands/tata.svg.asset.json";
-import brSuzuki from "@/assets/brands/suzuki.svg.asset.json";
-import brMahindra from "@/assets/brands/mahindra.svg.asset.json";
-import brToyota from "@/assets/brands/toyota.svg.asset.json";
-import brKia from "@/assets/brands/kia.svg.asset.json";
-import brRenault from "@/assets/brands/renault.svg.asset.json";
-import brNissan from "@/assets/brands/nissan.svg.asset.json";
-import brVolkswagen from "@/assets/brands/volkswagen.svg.asset.json";
-import brSkoda from "@/assets/brands/skoda.svg.asset.json";
-import brFord from "@/assets/brands/ford.svg.asset.json";
-import brBmw from "@/assets/brands/bmw.svg.asset.json";
-import brMercedes from "@/assets/brands/mercedes.svg.asset.json";
-import brAudi from "@/assets/brands/audi.svg.asset.json";
-import brMg from "@/assets/brands/mg.svg.asset.json";
-import brJeep from "@/assets/brands/jeep.svg.asset.json";
-import brVolvo from "@/assets/brands/volvo.svg.asset.json";
-import galFounder from "@/assets/gallery/founder.png.asset.json";
-import galServiceBay from "@/assets/gallery/service-bay.png.asset.json";
-import galWorkshopHall from "@/assets/gallery/workshop-hall.png.asset.json";
-import galWorkshopTop from "@/assets/gallery/workshop-top.png.asset.json";
-import galServiceArea from "@/assets/gallery/service-area.png.asset.json";
-import galWaterWash from "@/assets/gallery/water-wash.png.asset.json";
-import galShowroomFront from "@/assets/gallery/showroom-front.png.asset.json";
-import galAccessoriesStore from "@/assets/gallery/accessories-store.png.asset.json";
+import esanvLogo from "@/assets/esanv-logo.jpeg";
+import boschLogo from "@/assets/bosch-logo.jpeg";
+import brHyundai from "@/assets/brands/hyundai.svg";
+import brHonda from "@/assets/brands/honda.svg";
+import brTata from "@/assets/brands/tata.svg";
+import brSuzuki from "@/assets/brands/suzuki.svg";
+import brMahindra from "@/assets/brands/mahindra.svg";
+import brToyota from "@/assets/brands/toyota.svg";
+import brKia from "@/assets/brands/kia.svg";
+import brRenault from "@/assets/brands/renault.svg";
+import brNissan from "@/assets/brands/nissan.svg";
+import brVolkswagen from "@/assets/brands/volkswagen.svg";
+import brSkoda from "@/assets/brands/skoda.svg";
+import brFord from "@/assets/brands/ford.svg";
+import brBmw from "@/assets/brands/bmw.svg";
+import brMercedes from "@/assets/brands/mercedes.svg";
+import brAudi from "@/assets/brands/audi.svg";
+import brMg from "@/assets/brands/mg.svg";
+import brJeep from "@/assets/brands/jeep.svg";
+import brVolvo from "@/assets/brands/volvo.svg";
+import galFounder from "@/assets/gallery/founder.png";
+import galServiceBay from "@/assets/gallery/service-bay.png";
+import galWorkshopHall from "@/assets/gallery/workshop-hall.png";
+import galWorkshopTop from "@/assets/gallery/workshop-top.png";
+import galServiceArea from "@/assets/gallery/service-area.png";
+import galWaterWash from "@/assets/gallery/water-wash.png";
+import galShowroomFront from "@/assets/gallery/showroom-front.png";
+import galAccessoriesStore from "@/assets/gallery/accessories-store.png";
 import baPaintBefore from "@/assets/ba/paint-before.webp";
 import baPaintAfter from "@/assets/ba/paint-after.webp";
 import baDentBefore from "@/assets/ba/dent-before.webp";
@@ -78,8 +78,8 @@ export const CONTACT = {
 };
 
 export const LOGOS = {
-  esanv: esanvLogo.url,
-  bosch: boschLogo.url,
+  esanv: esanvLogo,
+  bosch: boschLogo,
 };
 
 export const IMAGES = {
@@ -248,35 +248,35 @@ export const SHOWROOM = [
 ];
 
 export const BRANDS = [
-  { name: "Hyundai", logo: brHyundai.url },
-  { name: "Honda", logo: brHonda.url },
-  { name: "Tata", logo: brTata.url },
-  { name: "Maruti Suzuki", logo: brSuzuki.url },
-  { name: "Mahindra", logo: brMahindra.url },
-  { name: "Toyota", logo: brToyota.url },
-  { name: "Kia", logo: brKia.url },
-  { name: "Renault", logo: brRenault.url },
-  { name: "Nissan", logo: brNissan.url },
-  { name: "Volkswagen", logo: brVolkswagen.url },
-  { name: "Skoda", logo: brSkoda.url },
-  { name: "Ford", logo: brFord.url },
-  { name: "BMW", logo: brBmw.url },
-  { name: "Mercedes-Benz", logo: brMercedes.url },
-  { name: "Audi", logo: brAudi.url },
-  { name: "MG", logo: brMg.url },
-  { name: "Jeep", logo: brJeep.url },
-  { name: "Volvo", logo: brVolvo.url },
+  { name: "Hyundai", logo: brHyundai },
+  { name: "Honda", logo: brHonda },
+  { name: "Tata", logo: brTata },
+  { name: "Maruti Suzuki", logo: brSuzuki },
+  { name: "Mahindra", logo: brMahindra },
+  { name: "Toyota", logo: brToyota },
+  { name: "Kia", logo: brKia },
+  { name: "Renault", logo: brRenault },
+  { name: "Nissan", logo: brNissan },
+  { name: "Volkswagen", logo: brVolkswagen },
+  { name: "Skoda", logo: brSkoda },
+  { name: "Ford", logo: brFord },
+  { name: "BMW", logo: brBmw },
+  { name: "Mercedes-Benz", logo: brMercedes },
+  { name: "Audi", logo: brAudi },
+  { name: "MG", logo: brMg },
+  { name: "Jeep", logo: brJeep },
+  { name: "Volvo", logo: brVolvo },
 ];
 
 export const GALLERY = [
-  { title: "Founder — ESANV Motors", img: galFounder.url },
-  { title: "Service Bay", img: galServiceBay.url },
-  { title: "Workshop Hall", img: galWorkshopHall.url },
-  { title: "Multi-Brand Workshop", img: galWorkshopTop.url },
-  { title: "Service Area", img: galServiceArea.url },
-  { title: "Water Wash Bay", img: galWaterWash.url },
-  { title: "Bosch Car Service Facade", img: galShowroomFront.url },
-  { title: "Accessories Store", img: galAccessoriesStore.url },
+  { title: "Founder — ESANV Motors", img: galFounder },
+  { title: "Service Bay", img: galServiceBay },
+  { title: "Workshop Hall", img: galWorkshopHall },
+  { title: "Multi-Brand Workshop", img: galWorkshopTop },
+  { title: "Service Area", img: galServiceArea },
+  { title: "Water Wash Bay", img: galWaterWash },
+  { title: "Bosch Car Service Facade", img: galShowroomFront },
+  { title: "Accessories Store", img: galAccessoriesStore },
 ];
 
 export const REVIEWS = [
