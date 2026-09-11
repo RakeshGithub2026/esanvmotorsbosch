@@ -3,26 +3,26 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowRight, ShoppingBag, Phone, ZoomIn, ZoomOut, X, RotateCcw, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 import { SiteLayout, SectionHeading } from "@/components/site/Layout";
 import { CONTACT } from "@/lib/site-data";
-import pageM01 from "@/assets/seat-covers/catalogue-page-m01-m08.png.asset.json";
-import pageM09 from "@/assets/seat-covers/catalogue-page-m09-m16.png.asset.json";
-import page1 from "@/assets/seat-covers/catalogue-page-1.webp.asset.json";
-import page2 from "@/assets/seat-covers/catalogue-page-2.webp.asset.json";
-import page3 from "@/assets/seat-covers/catalogue-page-3.webp.asset.json";
-import page4 from "@/assets/seat-covers/catalogue-page-4.webp.asset.json";
-import page5 from "@/assets/seat-covers/catalogue-page-5.webp.asset.json";
-import page6 from "@/assets/seat-covers/catalogue-page-6.webp.asset.json";
-import page7 from "@/assets/seat-covers/catalogue-page-7.webp.asset.json";
+import pageM01 from "@/assets/seat-covers/catalogue-page-m01-m08.png";
+import pageM09 from "@/assets/seat-covers/catalogue-page-m09-m16.png";
+import page1 from "@/assets/seat-covers/catalogue-page-1.webp";
+import page2 from "@/assets/seat-covers/catalogue-page-2.webp";
+import page3 from "@/assets/seat-covers/catalogue-page-3.webp";
+import page4 from "@/assets/seat-covers/catalogue-page-4.webp";
+import page5 from "@/assets/seat-covers/catalogue-page-5.webp";
+import page6 from "@/assets/seat-covers/catalogue-page-6.webp";
+import page7 from "@/assets/seat-covers/catalogue-page-7.webp";
 
 const PAGES = [
-  { img: pageM01.url, models: "M-01 to M-08", label: "Models 01 – 08" },
-  { img: pageM09.url, models: "M-09 to M-16", label: "Models 09 – 16" },
-  { img: page1.url, models: "M-17 to M-24", label: "Models 17 – 24" },
-  { img: page2.url, models: "M-25 to M-32", label: "Models 25 – 32" },
-  { img: page3.url, models: "M-33 to M-40", label: "Models 33 – 40" },
-  { img: page4.url, models: "M-49 to M-56", label: "Models 49 – 56" },
-  { img: page5.url, models: "M-57 to M-64", label: "Models 57 – 64" },
-  { img: page6.url, models: "M-65 to M-70", label: "Models 65 – 70" },
-  { img: page7.url, models: "M-71 to M-74", label: "Models 71 – 74" },
+  { img: pageM01, models: "M-01 to M-08", label: "Models 01 – 08" },
+  { img: pageM09, models: "M-09 to M-16", label: "Models 09 – 16" },
+  { img: page1, models: "M-17 to M-24", label: "Models 17 – 24" },
+  { img: page2, models: "M-25 to M-32", label: "Models 25 – 32" },
+  { img: page3, models: "M-33 to M-40", label: "Models 33 – 40" },
+  { img: page4, models: "M-49 to M-56", label: "Models 49 – 56" },
+  { img: page5, models: "M-57 to M-64", label: "Models 57 – 64" },
+  { img: page6, models: "M-65 to M-70", label: "Models 65 – 70" },
+  { img: page7, models: "M-71 to M-74", label: "Models 71 – 74" },
 ];
 
 export const Route = createFileRoute("/seat-covers")({
@@ -38,7 +38,7 @@ export const Route = createFileRoute("/seat-covers")({
       { property: "og:description", content: "40+ premium leather-look seat cover designs, custom-fit for every car brand." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://esanvmotorsbosch.lovable.app/seat-covers" },
-      { property: "og:image", content: page1.url },
+      { property: "og:image", content: page1 },
     ],
     links: [{ rel: "canonical", href: "https://esanvmotorsbosch.lovable.app/seat-covers" }],
   }),
